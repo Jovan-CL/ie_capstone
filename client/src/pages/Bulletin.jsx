@@ -23,7 +23,7 @@ const Bulletin = () => {
           <h2>About the organization</h2>
         </div>
         <div className="ie-logo-container">
-          <img src="../assets/piie-big-logo.png" alt="" />
+          <img src="../assets/logo_big_piie.png" alt="" />
         </div>
         <div className="piie-pupbc-container">
           <h2>PIIE-PUPBSC</h2>
