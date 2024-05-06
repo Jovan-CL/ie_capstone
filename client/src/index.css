@@ -1,5 +1,121 @@
+/* General style */
+:root {
+  --padding-block: 3rem;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+section {
+  font-size: 1.2rem;
+}
+
+/* Bulletin Page */
+
+.bulletin-header {
+  background-color: #264233;
+  display: flex;
+  justify-content: space-between;
+  padding-block: 0.5rem;
+  padding-inline: 1.5rem 0;
+}
+
+.bulletin_icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > img,
+  a > img {
+    width: 4rem;
+  }
+
+  & span > img {
+    width: 15rem;
+  }
+}
+
+.bulletin-nav {
+  display: flex;
+
+  & a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.5rem;
+    margin: 0 1.5rem 0 1.5rem;
+
+    & > img {
+      width: 2rem;
+    }
+
+    & > img[class="jobs-icon"] {
+      width: 2.5rem;
+    }
+
+    & p {
+      color: white;
+    }
+  }
+}
+
+.bulletin-page {
+  /* background-color: aqua; */
+  width: clamp(20rem, 80vw, 60rem);
+  margin-inline: auto;
+  padding-block: 1.5rem var(--padding-block);
+
+  & h1 {
+    text-align: center;
+  }
+
+  & li {
+    margin-block: 1rem;
+    list-style-type: none;
+    text-align: center;
+  }
+}
+
+/* About section */
+
+.about-org-section {
+  padding-block: var(--padding-block);
+
+  & div:nth-child(1) h2 {
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .ie-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > img {
+      width: 20rem;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+}
+
+.piie-pupbc-container {
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  font-weight: 600;
+}
+
+.socials-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+
+  & span {
+    margin-inline: 2rem;
+  }
 }

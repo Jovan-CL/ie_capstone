@@ -1,7 +1,7 @@
 const Login = () => {
   return (
     <>
-      <header>
+      <header className="login-header">
         <nav>
           <ul>
             <li>
@@ -12,11 +12,9 @@ const Login = () => {
             <li>
               <img src="./assets/ie-connect-new.png" alt="" />
             </li>
-            <li>
-              <a href="https://www.pup.edu.ph/">
-                <img src="./assets/pup-logo.png" alt="" />
-              </a>
-            </li>
+            <a href="https://www.pup.edu.ph/">
+              <img src="./assets/pup-logo.png" alt="" />
+            </a>
           </ul>
         </nav>
       </header>
