@@ -10,7 +10,7 @@
 }
 
 section {
-  font-size: 1.2rem;
+  font-size: 1.7rem;
 }
 
 /* Bulletin Page */
@@ -64,14 +64,18 @@ section {
   }
 }
 
-.bulletin-page {
-  /* background-color: aqua; */
+.bulletin-page-main {
   width: clamp(20rem, 80vw, 60rem);
   margin-inline: auto;
+}
+.bulletin-page {
+  height: 100svh;
+  /* background-color: aqua; */
   padding-block: 1.5rem var(--padding-block);
 
   & h1 {
     text-align: center;
+    font-size: 3rem;
   }
 
   & li {
@@ -96,7 +100,7 @@ section {
     justify-content: center;
     align-items: center;
     & > img {
-      width: 20rem;
+      width: rem;
       object-fit: contain;
       object-position: center;
     }
@@ -117,5 +121,23 @@ section {
 
   & span {
     margin-inline: 2rem;
+  }
+}
+
+.mission-vision-container {
+  padding-block: 3rem;
+  font-size: 1.5rem;
+
+  & > div {
+    margin-block: 3rem;
+  }
+
+  & h3 {
+    text-align: center;
+    font-size: 2.5rem;
+  }
+
+  & p {
+    line-height: 2.5rem;
   }
 }

@@ -1,6 +1,8 @@
+import IELOGOBIG from "../assets/logo-big.png";
+
 const Bulletin = () => {
   return (
-    <>
+    <main className="bulletin-page-main">
       <section className="bulletin-page">
         <div>
           <h1>Announcement!</h1>
@@ -23,7 +25,7 @@ const Bulletin = () => {
           <h2>About the organization</h2>
         </div>
         <div className="ie-logo-container">
-          <img src="../assets/logo_big_piie.png" alt="" />
+          <img src={IELOGOBIG} alt="" />
         </div>
         <div className="piie-pupbc-container">
           <h2>PIIE-PUPBSC</h2>
@@ -65,7 +67,7 @@ const Bulletin = () => {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 };
 
