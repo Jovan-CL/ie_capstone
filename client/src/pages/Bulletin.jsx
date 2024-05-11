@@ -2,7 +2,7 @@ import IELOGOBIG from "../assets/logo-big.png";
 
 const Bulletin = () => {
   return (
-    <main className="bulletin-page-main">
+    <section className="bulletin-page-main">
       <section className="bulletin-page">
         <div>
           <h1>Announcement!</h1>
@@ -67,7 +67,7 @@ const Bulletin = () => {
           </div>
         </div>
       </section>
-    </main>
+    </section>
   );
 };
 

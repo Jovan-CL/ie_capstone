@@ -9,7 +9,11 @@
   box-sizing: border-box;
 }
 
-section {
+.main {
+  padding-top: 83.5333px;
+}
+
+main {
   font-size: 1.7rem;
 }
 
@@ -21,20 +25,24 @@ section {
   justify-content: space-between;
   padding-block: 0.5rem;
   padding-inline: 1.5rem 0;
+  width: 100%;
+  margin-inline: auto;
+  position: fixed;
 }
 
 .bulletin_icons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-grow: 1;
 
   & > img,
   a > img {
-    width: 4rem;
+    width: clamp(3rem, 6vw, 4rem);
   }
 
   & span > img {
-    width: 15rem;
+    width: clamp(9rem, 25vw, 15rem);
   }
 }
 
@@ -139,5 +147,114 @@ section {
 
   & p {
     line-height: 2.5rem;
+  }
+}
+
+/* PEOPLE PAGE */
+
+.people-page {
+  padding-top: 0.5em;
+}
+
+.input-container {
+  display: flex;
+  gap: 5px;
+  width: max(20rem, 80vw);
+  margin-inline: auto;
+}
+
+.input-people {
+  font-size: 0.7em;
+  border-radius: 1rem;
+  border: none;
+  padding: 0.5em;
+  background-color: #eaefe7;
+
+  &:nth-child(1) {
+    width: 7rem;
+  }
+  &:nth-child(2) {
+    flex-basis: 90%;
+  }
+}
+
+.search-button {
+  padding-inline: 2rem;
+  border-radius: 1rem;
+  border: none;
+  outline: #264233 solid 1px;
+
+  & svg {
+    transition: transform 0.5s;
+  }
+  &:hover {
+    background-color: #264233;
+    color: white;
+  }
+  & .line {
+    transition: 1s;
+    /* stroke-dasharray: 42 0 42 0; */
+  }
+  &:hover svg {
+    transform: rotate(1turn);
+    stroke: white;
+
+    /* & .line {
+      /* stroke-dasharray: 42 40 42 40;
+      /* stroke-dashoffset: -90; */
+    /* } */
+  }
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 1rem;
+}
+
+.hamburger-button {
+  /* border: 2px solid; */
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding-inline: 0.16rem;
+  /* height: 25px; */
+}
+
+.cards-outer {
+  padding-block: 1em;
+}
+.backup {
+  text-align: center;
+}
+.cards {
+  padding-block: 5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  width: min(85rem, 90vw);
+  margin-inline: auto;
+}
+.card {
+  background-color: green;
+}
+
+@media (width <= 880px) {
+  .bulletin-nav,
+  .form-people {
+    display: none;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 880px) {
+  .hamburger-container {
+    display: none;
   }
 }
