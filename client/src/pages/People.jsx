@@ -46,6 +46,7 @@ const People = () => {
             max="2070"
             value={state.batch}
             onChange={getBatch}
+            required
           />
           {/* Input for getting the Fullname */}
           <input
@@ -54,6 +55,7 @@ const People = () => {
             placeholder="Fullname"
             value={state.name}
             onChange={getName}
+            required
           />
 
           <button className="search-button" type="submit">

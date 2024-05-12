@@ -45,7 +45,7 @@ const RootPage = () => {
           </div>
         </div>
       </header>
-      <main className="main">
+      <main>
         <Outlet />
       </main>
     </>

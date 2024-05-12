@@ -9,12 +9,9 @@
   box-sizing: border-box;
 }
 
-.main {
-  padding-top: 83.5333px;
-}
-
 main {
-  font-size: 1.7rem;
+  font-size: 1.25rem;
+  padding-top: 83.5333px;
 }
 
 /* Bulletin Page */
@@ -58,6 +55,10 @@ main {
     padding: 0.5rem;
     margin: 0 1.5rem 0 1.5rem;
 
+    &.active p {
+      color: #8febba;
+    }
+
     & > img {
       width: 2rem;
     }
@@ -90,6 +91,7 @@ main {
     margin-block: 1rem;
     list-style-type: none;
     text-align: center;
+    font-size: 1.7rem;
   }
 }
 
@@ -159,7 +161,7 @@ main {
 .input-container {
   display: flex;
   gap: 5px;
-  width: max(20rem, 80vw);
+  width: min(70rem, 80vw);
   margin-inline: auto;
 }
 
@@ -256,5 +258,70 @@ main {
 @media (width >= 880px) {
   .hamburger-container {
     display: none;
+  }
+}
+
+/* PEOPLE PAGE   */
+
+.profile-page {
+  padding-block: 1.5rem;
+  width: min(100vw, 90rem);
+  margin-inline: auto;
+}
+
+.profile-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.image-profile-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & img {
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+.profile-information {
+  flex-grow: 7;
+}
+
+.work-experience-section {
+  padding: 1.5rem;
+
+  & h3 {
+    margin-bottom: 1rem;
+  }
+}
+
+.profile-buttons {
+  display: flex;
+  gap: 1rem;
+  padding-block: 1rem;
+  flex-wrap: wrap;
+
+  & button {
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    background-color: #3a5a40;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-wrap: nowrap;
+
+    transition: 1ms ease-in-out;
+  }
+  & button:hover {
+    background-color: #3e4e41;
+    transform: scale(1.03);
   }
 }
