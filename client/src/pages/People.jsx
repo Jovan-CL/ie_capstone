@@ -49,30 +49,33 @@ const People = () => {
             required
           />
           {/* Input for getting the Fullname */}
-          <input
-            className="input-people"
-            type="search"
-            placeholder="Fullname"
-            value={state.name}
-            onChange={getName}
-            required
-          />
+          <label htmlFor="name">
+            <input
+              id="name"
+              className="input-people"
+              type="search"
+              placeholder="Fullname"
+              value={state.name}
+              onChange={getName}
+              required
+            />
 
-          <button className="search-button" type="submit">
-            {/* <img src={Magnify} alt="" /> */}
-            <svg
-              width="30px"
-              fill="none"
-              stroke="black"
-              strokeWidth="10px"
-              viewBox="0 0 100 100"
-            >
-              <path
-                className="line"
-                d="m 72 68 a -1 -1 0 0 0 -42 -42 a -1 -1 0 0 0 42 42 m -2 2 l 21 21"
-              ></path>
-            </svg>
-          </button>
+            <button className="search-button" type="submit">
+              {/* <img src={Magnify} alt="" /> */}
+              <svg
+                width="30px"
+                fill="none"
+                stroke="black"
+                strokeWidth="10px"
+                viewBox="0 0 100 100"
+              >
+                <path
+                  className="line"
+                  d="m 72 68 a -1 -1 0 0 0 -42 -42 a -1 -1 0 0 0 42 42 m -2 2 l 21 21"
+                ></path>
+              </svg>
+            </button>
+          </label>
         </div>
       </form>
       <div className="cards-outer">
