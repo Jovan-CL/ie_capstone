@@ -14,36 +14,12 @@ const RootPage = () => {
           <a href="https://www.pup.edu.ph/">
             <img src="../assets/pup-logo.png" alt="" />
           </a>
-        </ul>
-        <div className="nav-container">
-          <nav className="bulletin-nav">
-            <NavLink to="/bulletin">
-              <img src="../assets/bulletin-icon.png" alt="" />
-              <p>Bulletin</p>
+          <div>
+            <NavLink to="/login">
+              <button className="button-to-login">Login</button>
             </NavLink>
-            <NavLink to="/people">
-              <img src="../assets/people-icon.png" alt="" />
-              <p>People</p>
-            </NavLink>
-            <NavLink to="/profile">
-              <img src="../assets/profile-icon.png" alt="" />
-              <p>Profile</p>
-            </NavLink>
-            <NavLink to="jobs">
-              <img className="jobs-icon" src="../assets/jobs-icon.png" alt="" />
-              <p>Jobs</p>
-            </NavLink>
-          </nav>
-          <div className="hamburger-container">
-            <button className="hamburger-button">
-              <svg width="25" viewBox="0 0 100 100">
-                <rect width="80" height="10" x="10" y="30" rx="5"></rect>
-                <rect width="80" height="10" x="10" y="50" rx="5"></rect>
-                <rect width="80" height="10" x="10" y="70" rx="5"></rect>
-              </svg>
-            </button>
           </div>
-        </div>
+        </ul>
       </header>
       <main>
         <Outlet />
