@@ -1,26 +1,60 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
-import { Bulletin, Jobs, Login, People, Profile } from "./pages/index";
-import RootPage from "./RootPage";
-
-const Router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<RootPage />}>
-      <Route path="/login" element={<Login />} />
-      <Route index path="/bulletin" element={<Bulletin />} />
-      <Route path="/people" element={<People />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/jobs" element={<Jobs />} />
-    </Route>
-  )
-);
+  Bulletin,
+  Jobs,
+  Login,
+  People,
+  Profile,
+  EditProfile,
+  Registration,
+  Chats,
+} from "./pages/index";
+import { AuthProvider } from "./context/AuthContext";
+import { SocketContextProvider } from "./context/SocketContext";
+import ProtectedRoute from "./ProtectedRoute";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
-  return <RouterProvider router={Router} />;
+  return (
+    // <div className="app-container h-full">
+    <AuthProvider>
+      <BrowserRouter>
+        <SocketContextProvider>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route
+              path="/bulletin"
+              element={<ProtectedRoute element={<Bulletin />} />}
+            />
+            <Route
+              path="/people"
+              element={<ProtectedRoute element={<People />} />}
+            />
+            <Route
+              path="/profile"
+              element={<ProtectedRoute element={<Profile />} />}
+            />
+            <Route
+              path="/edit-profile"
+              element={<ProtectedRoute element={<EditProfile />} />}
+            />
+            <Route
+              path="/jobs"
+              element={<ProtectedRoute element={<Jobs />} />}
+            />
+            <Route
+              path="/chats"
+              element={<ProtectedRoute element={<Chats />} />}
+            />
+          </Routes>
+          <Toaster />
+          {/* <ProtectedRoute element={<Chats />} /> */}
+        </SocketContextProvider>
+      </BrowserRouter>
+    </AuthProvider>
+    // </div>
+  );
 };
 
 export default App;

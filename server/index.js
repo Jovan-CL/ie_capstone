@@ -1,40 +1,41 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-import router from "./routes.js";
+import cookieParser from "cookie-parser";
 
 import dbConnection from "./dbconnect/dbconnect.js";
 
+import generalRouter from "./routes/general.routes.js";
+import messageRouter from "./routes/message.routes.js";
+import userRouter from "./routes/chat.users.routes.js";
+
 dotenv.config();
+import { app, server } from "./Socket/socket.js";
+// const app = express();
 
-const app = express();
-
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Replace with your frontend URL
+    credentials: true, // Enable credentials (cookies, authorization headers)
+  })
+);
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json({ limit: "100mb" }));
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("WELCOME TO IE-CONNECT!!");
 });
 
-app.use("/api/ie-connect", router);
-// const uploadResult = await cloudinary.uploader
-//   .upload(
-//     "https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg",
-//     {
-//       public_id: "shoes",
-//     }
-//   )
-//   .catch((error) => {
-//     console.log(error);
-//   });
+app.use("/ie-connect/api", generalRouter);
+app.use("/ie-connect/api/chat", messageRouter);
+app.use("/ie-connect/api/users", userRouter);
 
-// console.log(uploadResult);
 async function server_db_connection() {
   try {
-    dbConnection(process.env.MONGO_URL);
-    app.listen(process.env.IE_CONNECT_SERVER, () => {
-      console.log("listening to port 8000");
+    server.listen(process.env.IE_CONNECT_SERVER, () => {
+      dbConnection(process.env.MONGO_URL);
+      console.log(`listening to port ${process.env.IE_CONNECT_SERVER}`);
     });
   } catch (error) {
     console.log({ error: error, message: "Something went wrong!" });
