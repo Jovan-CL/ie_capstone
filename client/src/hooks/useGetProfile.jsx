@@ -17,13 +17,24 @@ const useGetProfile = () => {
           }
         );
         const user = await res.json();
-        const userProfile = user.data;
+        const userProfile = user;
+        if (user) {
+          setCurrentProfileToEdit(userProfile)
+
+        } else {
+          throw new Error("Did not successfully get the user profile")
+        }
+        // console.log(userProfile)
       } catch (error) {
         toast.error(error.message);
+      } finally {
+        setLoading(false)
       }
     };
 
     getProfile();
   }, []);
+
+  return {loading, currentProfileToEdit}
 };
 export default useGetProfile;

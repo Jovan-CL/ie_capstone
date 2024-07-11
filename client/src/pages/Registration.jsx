@@ -1,53 +1,48 @@
 import { useState } from "react";
-import axios from "axios";
+import {useNavigate} from "react-router-dom"
+import toast from "react-hot-toast"
 
 const Registration = () => {
-  const [photo, setPhoto] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [middlename, setMiddlename] = useState("");
-  const [surname, setSurname] = useState("");
-  const [age, setAge] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [contact, setContact] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [batch, setBatch] = useState("");
+  const navigate = useNavigate();
 
-  // const navigate = useNavigate();
+const [newUserProfile, setNewUserProfile ] = useState({
+  firstname:"",
+  middlename:"",
+  surname:"",
+  age:"",
+  birthday:"",
+  contact:"",
+  email:"",
+  username:"",
+  password:"",
+  batch:"",
+})
+
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("photo", photo);
-    formData.append("firstname", firstname);
-    formData.append("middlename", middlename);
-    formData.append("surname", surname);
-    formData.append("age", age);
-    formData.append("birthday", birthday);
-    formData.append("contact", contact);
-    formData.append("email", email);
-    formData.append("username", username);
-    formData.append("password", password);
-    formData.append("batch", batch);
-    // console.log(formData);
+console.log(newUserProfile)
     try {
-      await axios.post(
+      const res = await fetch(
         "http://localhost:8000/ie-connect/api/registration",
-        formData,
         {
+          method:"POST",
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
-          withCredentials: true,
+          body:JSON.stringify(newUserProfile),
         }
       );
+
+      const result = res.json();
+      console.log(result.data);
     } catch (error) {
       if (!error?.response) {
+        toast.error(error.message)
         console.log("Field must be completed!");
       }
     }
+    navigate("/login")
   }
   return (
     <>
@@ -71,28 +66,17 @@ const Registration = () => {
           </div>
           <div>
             <form
-              method="post"
               onSubmit={handleSubmit}
-              encType="multipart/form-data"
             >
-              <label htmlFor="photo">
-                Upload a profile pic:
-                <input
-                  type="file"
-                  name="photo"
-                  id="photo"
-                  accept=".png, .jpg, .jpeg"
-                  onChange={(e) => setPhoto(e.target.files[0])} // Handle file input
-                />
-              </label>
+              
               <label htmlFor="firstname">
                 Firstname:
                 <input
                   id="firstname"
                   name="firstname"
                   type="text"
-                  value={firstname}
-                  onChange={(e) => setFirstname(e.target.value)}
+                  value={newUserProfile.firstname}
+                  onChange={(e) => setNewUserProfile({...newUserProfile, firstname: e.target.value})}
                 />
               </label>
               <label htmlFor="middlename">
@@ -101,8 +85,8 @@ const Registration = () => {
                   id="middlename"
                   name="middlename"
                   type="text"
-                  value={middlename}
-                  onChange={(e) => setMiddlename(e.target.value)}
+                  value={newUserProfile.middlename}
+                  onChange={(e) => setNewUserProfile({...newUserProfile, middlename: e.target.value})}
                 />
               </label>
               <label htmlFor="surname">
@@ -111,8 +95,8 @@ const Registration = () => {
                   id="surname"
                   name="surname"
                   type="text"
-                  value={surname}
-                  onChange={(e) => setSurname(e.target.value)}
+                  value={newUserProfile.surname}
+                  onChange={(e) => setNewUserProfile({...newUserProfile, surname: e.target.value})}
                 />
               </label>
               <label htmlFor="age">
@@ -121,8 +105,8 @@ const Registration = () => {
                   id="age"
                   name="age"
                   type="number"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
+                  value={newUserProfile.age}
+                  onChange={(e) => setNewUserProfile({...newUserProfile, age: e.target.value})}
                 />
               </label>
               <label htmlFor="birthday">
@@ -131,8 +115,8 @@ const Registration = () => {
                   id="birthday"
                   name="birthday"
                   type="date"
-                  value={birthday}
-                  onChange={(e) => setBirthday(e.target.value)}
+                  value={newUserProfile.birthday}
+                  onChange={(e) => setNewUserProfile({...newUserProfile, birthday: e.target.value})}
                 />
               </label>
               <label htmlFor="contact">
@@ -141,8 +125,8 @@ const Registration = () => {
                   id="contact"
                   name="contact"
                   type="text"
-                  value={contact}
-                  onChange={(e) => setContact(e.target.value)}
+                  value={newUserProfile.contact}
+                  onChange={(e) => setNewUserProfile({...newUserProfile, contact: e.target.value})}
                 />
               </label>
               <label htmlFor="email">
@@ -151,8 +135,8 @@ const Registration = () => {
                   id="email"
                   name="email"
                   type="text"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={newUserProfile.email}
+                  onChange={(e) => setNewUserProfile({...newUserProfile, email: e.target.value})}
                 />
               </label>
               <label htmlFor="username">
@@ -161,8 +145,8 @@ const Registration = () => {
                   id="username"
                   name="username"
                   type="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={newUserProfile.username}
+                  onChange={(e) => setNewUserProfile({...newUserProfile, username: e.target.value})}
                 />
               </label>
               <label htmlFor="password">
@@ -171,8 +155,8 @@ const Registration = () => {
                   id="password"
                   name="password"
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={newUserProfile.password}
+                  onChange={(e) => setNewUserProfile({...newUserProfile, password: e.target.value})}
                 />
               </label>
 
@@ -181,18 +165,19 @@ const Registration = () => {
                 <select
                   name="batch"
                   id="batch"
-                  onChange={(e) => setBatch(e.target.value)}
+                  onChange={(e) => setNewUserProfile({...newUserProfile, batch: e.target.value})}
                 >
                   <option value="">Select your batch</option>
                   <option value="2020">2020</option>
                   <option value="2021">2021</option>
                   <option value="2022">2022</option>
+                  <option value="2023">2023</option>
                   <option value="2024">2024</option>
                   <option value="2025">2025</option>
                   <option value="2026">2026</option>
                   <option value="2027">2027</option>
                 </select>
-                <input type="submit" value="submit" />
+                <button type="submit">Submit</button>
               </label>
             </form>
           </div>

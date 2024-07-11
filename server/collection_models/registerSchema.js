@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const Users = new mongoose.Schema(
   {
-    photopic: { type: String, required: true },
+    photopic: { type: String },
     // name: {
     //   type: mongoose.Schema.Types.name,
     //   required: true,

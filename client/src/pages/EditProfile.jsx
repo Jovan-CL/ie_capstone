@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { AuthContext } from "../context/AuthContext";
+import useGetProfile from "../hooks/useGetProfile";
 // import axios from "axios";
-import useEditProfile from "../hooks/useEditProfile";
+// import useEditProfile from "../hooks/useEditProfile";
 
 const EditProfile = () => {
+
+  const {loading, currentProfileToEdit} = useGetProfile()
+
+console.log(currentProfileToEdit)
   const [photo, setPhoto] = useState("");
   const [firstname, setFirstname] = useState("");
   const [middlename, setMiddlename] = useState("");
@@ -15,7 +20,11 @@ const EditProfile = () => {
   const [email, setEmail] = useState("");
   const [batch, setBatch] = useState("");
 
+
+  const {isAuthenticated} = useContext(AuthContext)
   // const navigate = useNavigate();
+
+  
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,49 +41,35 @@ const EditProfile = () => {
     formData.append("batch", batch);
     // console.log(formData);
 
-    useEditProfile(formData);
+
     try {
       const response = await fetch(
         `http://localhost:8000/ie-connect/api/profile/editProfile`,
-        formData,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          method: "PATCH",
+          credentials: "include",
+          // headers: {
+          //   "Content-Type": "multipart/form-data",
+          // },
           params: {
-            id: "66767035cf7dd9720370feff",
+            id: isAuthenticated.id,
           },
+          body: formData,
+          
         }
       );
-      console.log(response.data);
+
+      const result = response.json();
+
+      console.log(result);
+      console.log(result.data);
     } catch (error) {
       if (!error?.response) {
         console.log("Field must be completed!");
       }
     }
 
-    // console.log({
-    //   photo,
-    //   firstname,
-    //   middlename,
-    //   surname,
-    //   age,
-    //   birthday,
-    //   contact,
-    //   email,
-    //   batch,
-    // });
-
-    // setPhoto("");
-    // setFirstname("");
-    // setMiddlename("");
-    // setSurname("");
-    // setAge("");
-    // setBirthday("");
-    // setContact("");
-    // setEmail("");
-    // setBatch("");
-    // navigate("/profile");
+   
   }
 
   return (

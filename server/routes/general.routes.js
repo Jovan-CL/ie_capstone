@@ -8,16 +8,14 @@ import Announcement from "../collection_models/announcementSchema.js";
 // import UsersProfile from "../collection_models/userProfilesSchema.js";
 
 // SECURITY CONFIGURATION
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
+import bcrypt from "bcrypt"
 // import jwt from "jsonwebtoken";
 import { tokenGenerator } from "../utils/tokenGenerator.js";
 // DI PA TO AYOS HAHHAHAHA DI PA SECURED ANG WEBSITE
 import { authenticate } from "../middleware/authController.js";
-import { refreshTokenMiddleware } from "../middleware/refreshTokenController.js";
-import userProfilesSchema from "../collection_models/userProfilesSchema.js";
 
 const JSON_SECRET = process.env.JSON_SECRET_KEY;
-const JSON_REFRESH_SECRET = process.env.JSON_REFRESH_TOKEN;
 
 // CLOUDINARY CONFIGURATION
 cloudinary.config({
@@ -80,22 +78,20 @@ router.route("/registration").post(async (req, res) => {
       batch,
     } = req.body;
     // const file = req.file;
+    console.log(password)
     const name = `${firstname} ${middlename} ${surname}`;
     const duplicate = await Users.findOne({ username }).lean().exec();
     if (duplicate) {
       return res.status(400).json({ message: "Duplicate username" });
     }
-
+console.log(password)
     const saltRounds = 10;
     const hashedPass = await bcrypt.hash(password, saltRounds);
 
-    // console.log(body);
-    // console.log(file.path);
-    // const photoUrl = await cloudinary.uploader.upload(file.path);
+    
     const Birthdate = new Date(birthday);
-    tokenGenerator(result._id, res, JSON_SECRET);
+    // tokenGenerator(result._id, res, JSON_SECRET);
     const newProfile = await Users.create({
-      // photopic: photoUrl.secure_url,
       name,
       age,
       birthday: Birthdate,
@@ -109,32 +105,10 @@ router.route("/registration").post(async (req, res) => {
     // console.log(photoUrl.secure_url);
     res.status(201).json({ success: true, message: "Profile saved!" });
   } catch (error) {
-    console.error(error.message);
+    console.error("error in registration",error.message);
+    res.status(500).json({ success: true, message: "Profile saved!" });
+
   }
-  // try {
-  //   const duplicate = await Users.findOne({ username }).lean().exec();
-  //   if (duplicate) {
-  //     return res.status(400).json({ message: "Duplicate username" });
-  //   }
-
-  //   const saltRounds = 10;
-  //   const hashedPass = await bcrypt.hash(password, saltRounds);
-  //   const registeredUser = await Users.create({
-  //     name: name,
-  //     email: email,
-  //     batch: batch,
-  //     username: username,
-  //     password: hashedPass,
-  //   });
-
-  //   await registeredUser.save();
-
-  //   res
-  //     .status(201)
-  //     .json({ success: true, message: "User created successfully!" });
-  // } catch (err) {
-  //   res.json({ success: false, error: err.message });
-  // }
 });
 
 // LOGIN POST ENDPOINT
@@ -174,7 +148,7 @@ router.route("/login").post(async (req, res) => {
       },
     });
   } catch (error) {
-    console.error("Error during login:", error);
+    console.error("Error during login:", error.message);
     res.status(500).json({ message: "Internal server error" });
   }
 });
@@ -229,13 +203,32 @@ router
       if (file) {
         const photoUrl = await cloudinary.uploader.upload(file.path);
         updated.photopic = photoUrl.secure_url;
+        console.log("from edit profile ", photoUrl)
       }
-      updated.name = name;
-      updated.age = age;
+      if(name){
+        updated.name = name;
+
+      }
+      if(age){
+
+        updated.age = age;
+      }
+      if(birthday){
+
       updated.birthday = birthday;
-      updated.contact = contact;
-      updated.email = email;
-      updated.batch = batch;
+      }
+      if(contact){
+
+        updated.contact = contact;
+      }
+      if(email){
+
+        updated.email = email;
+      }
+      if(batch){
+
+        updated.batch = batch;
+      }
 
       const updatedProfile = await updated.save();
 

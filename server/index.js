@@ -38,7 +38,7 @@ async function server_db_connection() {
       console.log(`listening to port ${process.env.IE_CONNECT_SERVER}`);
     });
   } catch (error) {
-    console.log({ error: error, message: "Something went wrong!" });
+    console.error({ error: error, message: "Something went wrong!" });
   }
 }
 

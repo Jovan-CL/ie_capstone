@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
+import { PIIELOGOCROPPED } from "../assets";
 
 // import axios from "axios";
 // import Magnify from "../assets/magnifying-glass.png";
@@ -160,12 +161,12 @@ const People = () => {
                       .map((user) => {
                         // console.log(user);
                         return (
-                          <div className="card p-2 " key={user._id}>
+                          <div className="card p-2 flex flex-col items-center justify-center hover:scale-110 ease-in-out" key={user._id}>
                             <div>
                               <img
-                                className="rounded-full"
+                                className="rounded-full w-40 h-40 object-contain"
                                 // key={user.id}
-                                src={user.photopic}
+                                src={user.photopic ? user.photopic : PIIELOGOCROPPED}
                                 alt=""
                               />
                             </div>

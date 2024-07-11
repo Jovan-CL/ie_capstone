@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Header from "../components/Header";
+import { PIIELOGOCROPPED } from "../assets";
+import { extractDate } from "../utils/extractTime";
 const Profile = () => {
+  
   const [userProfile, setUserProfile] = useState({});
+
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -20,6 +24,7 @@ const Profile = () => {
     }
     fetchUser();
   }, []);
+
   return (
     <>
       <Header />
@@ -30,14 +35,14 @@ const Profile = () => {
               <img
                 width="225px"
                 height="225px"
-                src={userProfile.photopic}
-                alt=""
+                src={userProfile.photopic ? userProfile.photopic : PIIELOGOCROPPED}
+                alt={userProfile.name}
               />
             </div>
             <div className="profile-information">
               <h3>Name: {userProfile.name}</h3>
               <p>Age: {userProfile.age}</p>
-              <p>Birthday: {userProfile.birthday}</p>
+              <p>Birthday: {extractDate("2001-03-23T00:00:00.000Z")}</p>
               <p>Location: </p>
               <p>Contact Number: {userProfile.contact}</p>
               <p>Email: {userProfile.email}</p>
