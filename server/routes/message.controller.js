@@ -36,6 +36,7 @@ export async function sendMessage(req, res) {
       io.to(receiverSocketId).emit("newMessage", newMessage);
     } else {
       console.log("Error in send message socket part");
+      // throw new Error("Error");
     }
 
     res.status(201).json({ message: newMessage });
@@ -57,7 +58,7 @@ export async function getMessage(req, res) {
     if (!conversation) {
       return res.status(200).json([]);
     }
-    res.status(200).json({ data: conversation.messages });
+    res.status(200).json( conversation.messages );
   } catch (error) {
     console.error("Error from getMessage controller ", error);
     res.status(500).json({ message: "Internal server error" });

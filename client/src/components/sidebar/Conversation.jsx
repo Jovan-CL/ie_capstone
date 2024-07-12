@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useSocketContext } from "../../context/SocketContext";
 import useConversation from "../../zustand/zustand.store";
+import { PIIELOGOCROPPED } from "../../assets";
 const Conversation = ({ conversation, lastIdx }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const { onlineUsers } = useSocketContext();
@@ -18,7 +19,7 @@ const Conversation = ({ conversation, lastIdx }) => {
       >
         <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
-            <img src={conversation.photopic} alt={conversation.name} />
+            <img src={conversation.photopic ? conversation.photopic : PIIELOGOCROPPED} alt={conversation.name} />
           </div>
         </div>
         <div className="flex flex-col flex-1">

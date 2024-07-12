@@ -22,7 +22,7 @@ const useSendMessage = () => {
       );
       const data = await res.json();
       const newMessage = data.message;
-      //   console.log(newMessage);
+        console.log(newMessage);
       if (data.error) throw new Error(data.error);
       setMessages([...messages, newMessage]);
     } catch (error) {

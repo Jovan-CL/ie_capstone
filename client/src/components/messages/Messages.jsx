@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import useListenMessages from "../../hooks/useListenMessages";
 const Messages = () => {
   const { messages, loading } = useGetMessages();
-  //   console.log(messages);
+    // console.log(messages);
   useListenMessages();
   const lastMessageRef = useRef();
   useEffect(() => {
@@ -15,6 +15,11 @@ const Messages = () => {
   }, [messages]);
   return (
     <div className="px-4 flex-1 overflow-auto">
+      
+
+      {!loading && messages.length === 0 && (
+        <p className="text-center h-full flex justify-center items-center text-2xl">Send a message to start the conversation</p>
+      )}
       {!loading &&
         messages.length > 0 &&
         messages.map((message) => {
@@ -27,9 +32,6 @@ const Messages = () => {
         })}
 
       {loading && <Skeletons />}
-      {!loading && messages.length === 0 && (
-        <p className="text-center">Send a message to start the conversation</p>
-      )}
     </div>
   );
 };
