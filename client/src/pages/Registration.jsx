@@ -3,22 +3,6 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { PIIELOGOCROPPED, IECONNECNEWPNG, PUPLOGOPNG } from "../assets/index";
 
-// let checker = function () {
-//   let password = document.querySelector("#password").value;
-//   let confirmPassword = document.querySelector("#confPassword").value;
-
-//   if (password === "" && confirmPassword === "") {
-//     document.querySelector("#message").innerHTML = "Empty Field";
-//     document.querySelector("#message").style.color = "Orange";
-//   } else if (password === confirmPassword) {
-//     document.querySelector("#message").innerHTML = "Matched";
-//     document.querySelector("#message").style.color = "Green";
-//   } else {
-//     document.querySelector("#message").innerHTML = "Not Matched";
-//     document.querySelector("#message").style.color = "Red";
-//   }
-// };
-
 const Registration = () => {
   const navigate = useNavigate();
 
@@ -78,10 +62,6 @@ const Registration = () => {
 
           <a href="https://www.pup.edu.ph/">
             <img src={PUPLOGOPNG} alt="" />
-          </a>
-
-          <a href="https://www.pup.edu.ph/">
-            <img src="../assets/pup-logo.png" alt="" />
           </a>
         </ul>
       </header>
@@ -267,14 +247,11 @@ const Registration = () => {
                 />
               </label>
 
-              {/* <label htmlFor="password">
-                Password: */}
               <label
                 htmlFor="password"
                 className="input input-bordered flex items-center gap-2 text-sm col-span-2"
               >
                 Password:
-                {/* d1a7290f2eaeabe4dc895bcb885fc3ffb813c0f4 */}
                 <input
                   className="grow overflow-hidden pass"
                   id="password"
