@@ -79,6 +79,10 @@ const Registration = () => {
           <a href="https://www.pup.edu.ph/">
             <img src={PUPLOGOPNG} alt="" />
           </a>
+          
+          <a href="https://www.pup.edu.ph/">
+            <img src="../assets/pup-logo.png" alt="" />
+          </a>
         </ul>
       </header>
       <main>
