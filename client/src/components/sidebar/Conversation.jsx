@@ -33,7 +33,9 @@ const Conversation = ({ conversation, lastIdx }) => {
           </div>
         </div>
       </div>
+     <div>
       {!lastIdx && <div className="divider divider-neutral my-0 py-0 h-1" />}
+      </div> 
     </>
   );
 };

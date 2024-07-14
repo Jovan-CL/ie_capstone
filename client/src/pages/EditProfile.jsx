@@ -1,15 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import useGetProfile from "../hooks/useGetProfile";
-// import axios from "axios";
-// import useEditProfile from "../hooks/useEditProfile";
+import toast from "react-hot-toast";
+import useGetConversations from "../hooks/useGetConversations";
 
 const EditProfile = () => {
+  const { isAuthenticated } = useContext(AuthContext);
 
-  const {loading, currentProfileToEdit} = useGetProfile()
-
-console.log(currentProfileToEdit)
   const [photo, setPhoto] = useState("");
   const [firstname, setFirstname] = useState("");
   const [middlename, setMiddlename] = useState("");
@@ -17,14 +14,11 @@ console.log(currentProfileToEdit)
   const [age, setAge] = useState("");
   const [birthday, setBirthday] = useState("");
   const [contact, setContact] = useState("");
+  const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");
   const [batch, setBatch] = useState("");
 
-
-  const {isAuthenticated} = useContext(AuthContext)
-  // const navigate = useNavigate();
-
-  
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -37,39 +31,34 @@ console.log(currentProfileToEdit)
     formData.append("age", age);
     formData.append("birthday", birthday);
     formData.append("contact", contact);
+    formData.append("location", location);
     formData.append("email", email);
     formData.append("batch", batch);
     // console.log(formData);
 
+    // console.log(formData);
 
     try {
       const response = await fetch(
-        `http://localhost:8000/ie-connect/api/profile/editProfile`,
+        `http://localhost:8000/ie-connect/api/profile/editProfile/${isAuthenticated.id}`,
         {
           method: "PATCH",
           credentials: "include",
-          // headers: {
-          //   "Content-Type": "multipart/form-data",
-          // },
-          params: {
-            id: isAuthenticated.id,
-          },
           body: formData,
-          
         }
       );
 
-      const result = response.json();
+      const result = await response.json();
 
+      // console.log(result);
+      localStorage.setItem("user", JSON.stringify(result.data));
       console.log(result);
-      console.log(result.data);
+      toast.success(`${result.message}`);
     } catch (error) {
-      if (!error?.response) {
-        console.log("Field must be completed!");
-      }
+      toast.error(error.message);
+      console.error("Update fail", error.message);
     }
-
-   
+    navigate("/profile");
   }
 
   return (
@@ -195,6 +184,16 @@ console.log(currentProfileToEdit)
                   type="text"
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
+                />
+              </label>
+              <label htmlFor="location">
+                Location:
+                <input
+                  id="location"
+                  name="location"
+                  type="text"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
               </label>
               <label htmlFor="email">

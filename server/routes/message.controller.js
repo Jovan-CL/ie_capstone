@@ -5,7 +5,7 @@ import { getReceiverSocketId, io } from "../Socket/socket.js";
 export async function sendMessage(req, res) {
   try {
     const { message } = req.body;
-    console.log(message);
+    // console.log(message);
     // return;
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
@@ -58,7 +58,7 @@ export async function getMessage(req, res) {
     if (!conversation) {
       return res.status(200).json([]);
     }
-    res.status(200).json( conversation.messages );
+    res.status(200).json(conversation.messages);
   } catch (error) {
     console.error("Error from getMessage controller ", error);
     res.status(500).json({ message: "Internal server error" });

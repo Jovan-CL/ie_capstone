@@ -161,12 +161,16 @@ const People = () => {
                       .map((user) => {
                         // console.log(user);
                         return (
-                          <div className="card p-2 flex flex-col items-center justify-center hover:scale-110 ease-in-out" key={user._id}>
-                            <div>
+                          <div className="card p-2 " key={user._id}>
+                            <div className="flex justify-center items-center">
                               <img
                                 className="rounded-full w-40 h-40 object-contain"
                                 // key={user.id}
-                                src={user.photopic ? user.photopic : PIIELOGOCROPPED}
+                                src={
+                                  user.photopic
+                                    ? user.photopic
+                                    : PIIELOGOCROPPED
+                                }
                                 alt=""
                               />
                             </div>
