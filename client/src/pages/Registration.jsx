@@ -266,16 +266,11 @@ const Registration = () => {
                   }
                 />
               </label>
-<<<<<<< HEAD
-              <label htmlFor="password">
-                Password::::::::
-=======
               <label
                 htmlFor="password"
                 className="input input-bordered flex items-center gap-2 text-sm col-span-2"
               >
                 Password:
->>>>>>> d1a7290f2eaeabe4dc895bcb885fc3ffb813c0f4
                 <input
                   className="grow overflow-hidden pass"
                   id="password"
@@ -336,6 +331,7 @@ const Registration = () => {
                   <option value="2025">2025</option>
                   <option value="2026">2026</option>
                   <option value="2027">2027</option>
+                  <option value="2028">2028</option>
                 </select>
               </label>
               <button
