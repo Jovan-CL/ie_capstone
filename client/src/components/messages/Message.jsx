@@ -5,23 +5,23 @@ import useConversation from "../../zustand/zustand.store";
 import { extractTime } from "../../utils/extractTime";
 import { PIIELOGOCROPPED } from "../../assets";
 
-
 const Message = ({ message }) => {
   const { isAuthenticated } = useContext(AuthContext);
   const { selectedConversation } = useConversation();
-  
+
   const fromMe = message.senderId === isAuthenticated.id;
   const chatClassName = fromMe ? "chat-end" : "chat-start";
   const profilePic = fromMe
     ? isAuthenticated.profilePic
     : selectedConversation.photopic;
+  console.log(selectedConversation);
   const bubbleBgColor = fromMe ? "bg-green-700" : "";
   const shakeClass = message.shouldShake ? "shake" : "";
   return (
     <div className={`chat ${chatClassName}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
-          <img src={`${profilePic ? profilePic : PIIELOGOCROPPED}`} alt="user avatar" />
+          <img src={`${profilePic || PIIELOGOCROPPED}`} alt="user avatar" />
         </div>
       </div>
       <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass}`}>

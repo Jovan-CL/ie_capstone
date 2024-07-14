@@ -5,14 +5,11 @@ import { v2 as cloudinary } from "cloudinary";
 import upload from "../multer/multer.config.js";
 import Users from "../collection_models/registerSchema.js";
 import Announcement from "../collection_models/announcementSchema.js";
-// import UsersProfile from "../collection_models/userProfilesSchema.js";
 
-// SECURITY CONFIGURATION
-// import bcrypt from "bcrypt";
-import bcrypt from "bcrypt"
-// import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+
 import { tokenGenerator } from "../utils/tokenGenerator.js";
-// DI PA TO AYOS HAHHAHAHA DI PA SECURED ANG WEBSITE
+
 import { authenticate } from "../middleware/authController.js";
 
 const JSON_SECRET = process.env.JSON_SECRET_KEY;
@@ -29,7 +26,7 @@ const router = Router();
 // ANNOUNCEMENT GET ENDPOINT
 router.route("/bulletin").get(authenticate, async (req, res) => {
   try {
-    const resAnnouncement = await Announcement.find({
+    const resAnnouncement = await Announcement?.find({
       expiration: { $gte: Date.now() },
     });
     console.log(resAnnouncement);
@@ -72,30 +69,33 @@ router.route("/registration").post(async (req, res) => {
       age,
       birthday,
       contact,
+      location,
       email,
       username,
       password,
       batch,
     } = req.body;
     // const file = req.file;
-    console.log(password)
+    // console.log(password)
     const name = `${firstname} ${middlename} ${surname}`;
     const duplicate = await Users.findOne({ username }).lean().exec();
     if (duplicate) {
       return res.status(400).json({ message: "Duplicate username" });
     }
-console.log(password)
+    console.log(password);
     const saltRounds = 10;
     const hashedPass = await bcrypt.hash(password, saltRounds);
+    const hashedlocation = await bcrypt.hash(location, saltRounds);
 
-    
-    const Birthdate = new Date(birthday);
-    // tokenGenerator(result._id, res, JSON_SECRET);
     const newProfile = await Users.create({
+      firstname,
+      middlename,
+      surname,
       name,
       age,
-      birthday: Birthdate,
+      birthday,
       contact,
+      location: hashedlocation,
       email,
       username,
       password: hashedPass,
@@ -105,9 +105,8 @@ console.log(password)
     // console.log(photoUrl.secure_url);
     res.status(201).json({ success: true, message: "Profile saved!" });
   } catch (error) {
-    console.error("error in registration",error.message);
-    res.status(500).json({ success: true, message: "Profile saved!" });
-
+    console.error("error in registration", error.message);
+    res.status(500).json({ success: false, message: "Profile saved!" });
   }
 });
 
@@ -115,7 +114,7 @@ console.log(password)
 router.route("/login").post(async (req, res) => {
   try {
     const { uname, pword } = req.body;
-    console.log(uname, pword);
+    // console.log(uname, pword);
 
     const result = await Users.findOne({ username: uname });
     if (!result) {
@@ -127,16 +126,8 @@ router.route("/login").post(async (req, res) => {
       return res.status(401).json({ message: "Invalid password" });
     }
 
-    // const token = jwt.sign({ userId: result._id }, JSON_REFRESH_SECRET, {
-    //   expiresIn: "1d",
-    // });
-    // res.cookie("token", token, {
-    //   httpOnly: true,
-    //   secure: process.env.NODE_ENV === "production",
-    //   sameSite: "Strict",
-    //   maxAge: 15 * 24 * 60 * 60 * 1000,
-    // });
     tokenGenerator(result._id, res, JSON_SECRET);
+
     res.status(200).json({
       success: true,
       message: "Logged in successfully!",
@@ -153,28 +144,6 @@ router.route("/login").post(async (req, res) => {
   }
 });
 
-// Check Auth Route
-// router.route("/check-auth").get((req, res) => {
-//   res.status(200).send("Authenticated");
-// });
-
-// REFRESH TOKEN Route
-// router.route("/refresh-token").post(async (req, res) => {
-//   const refreshToken = req.cookies.refreshToken;
-//   if (!refreshToken) return res.sendStatus(401);
-
-//   try {
-//     const decoded = jwt.verify(refreshToken, JSON_REFRESH_SECRET);
-//     const token = jwt.sign({ userId: decoded.userId }, JSON_SECRET, {
-//       expiresIn: "1d", // Refreshed access token duration
-//     });
-//     res.json({ token });
-//   } catch (err) {
-//     console.error("Error refreshing token:", err);
-//     res.status(403).json({ message: "Token refresh failed" });
-//   }
-// });
-
 // LOG OUT ROUTE
 
 router.route("/logout").post(async (req, res) => {
@@ -189,61 +158,110 @@ router.route("/logout").post(async (req, res) => {
 
 // CREATE PROFILE POST ENDPOINT
 router
-  .route("/profile/editProfile")
+  .route("/profile/editProfile/:id")
   .patch(authenticate, upload.single("photo"), async (req, res) => {
-    const { name, age, birthday, contact, email, batch } = req.body;
+    const {
+      firstname,
+      middlename,
+      surname,
+      age,
+      birthday,
+      contact,
+      location,
+      email,
+      batch,
+    } = req.body;
     const id = req.params.id;
     const file = req.file;
+
     try {
       const updated = await Users.findById(id).exec();
+
       if (!updated) {
-        return res.status(400).json({ message: "User not found" });
+        return res.status(404).json({ message: "User not found" });
       }
 
       if (file) {
         const photoUrl = await cloudinary.uploader.upload(file.path);
         updated.photopic = photoUrl.secure_url;
-        console.log("from edit profile ", photoUrl)
+        // console.log("from edit profile ", photoUrl)
       }
-      if(name){
-        updated.name = name;
 
+      if (firstname) {
+        updated.firstname = firstname;
       }
-      if(age){
 
+      if (middlename) {
+        updated.middlename = middlename;
+      }
+      if (surname) {
+        updated.surname = surname;
+      }
+
+      // if (firstname || middlename || surname) {
+      const name = `${firstname ? firstname : updated.firstname} ${
+        middlename ? middlename : updated.middlename
+      } ${surname ? surname : updated.surname}`;
+      updated.name = name;
+      // }
+
+      if (age) {
         updated.age = age;
       }
-      if(birthday){
 
-      updated.birthday = birthday;
+      if (birthday) {
+        updated.birthday = birthday;
       }
-      if(contact){
 
+      if (contact) {
         updated.contact = contact;
       }
-      if(email){
 
+      if (location) {
+        updated.location = location;
+      }
+
+      if (email) {
         updated.email = email;
       }
-      if(batch){
-
+      if (batch) {
         updated.batch = batch;
       }
 
       const updatedProfile = await updated.save();
 
       // console.log(photoUrl.secure_url);
-      res
-        .status(201)
-        .json({ success: true, message: `${updatedProfile.name} is updated` });
+      res.status(201).json({
+        success: true,
+        message: `${updatedProfile.name} is updated successfully!`,
+        data: {
+          id: updatedProfile._id,
+          fullname: updatedProfile.name,
+          username: updatedProfile.username,
+          profilePic: updatedProfile.photopic,
+        },
+      });
     } catch (error) {
+      res.status(400).json({ success: true, message: `failed to update` });
       console.error(error.message);
     }
   });
 
-router.route("/profile").get(authenticate, async (req, res) => {
-  console.log(req.user);
-  res.json(req.user);
+router.route("/profile/:id").get(authenticate, async (req, res) => {
+  try {
+    const currentId = req.params.id;
+    const user = req.user;
+
+    const userProfile = await Users.findById(currentId)
+      .lean()
+      .select("-password");
+    if (userProfile) {
+      // console.log(userProfile);
+      res.status(200).json(user);
+    }
+  } catch (error) {
+    res.status(400).json("Error occured in profile server");
+  }
 });
 
 // ADMIN LOGIN POST ENDPOINT
