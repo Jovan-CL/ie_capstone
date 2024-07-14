@@ -57,6 +57,10 @@ console.log(newUserProfile)
           <a href="https://www.pup.edu.ph/">
             <img src="../assets/pup-logo.png" alt="" />
           </a>
+          
+          <a href="https://www.pup.edu.ph/">
+            <img src="../assets/pup-logo.png" alt="" />
+          </a>
         </ul>
       </header>
       <main>
