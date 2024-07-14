@@ -266,11 +266,21 @@ const Registration = () => {
                   }
                 />
               </label>
+<<<<<<< HEAD
+=======
+
+              {/* <label htmlFor="password">
+                Password: */}
+>>>>>>> b492056a372d13340a046284487ea5e3f76fb879
               <label
                 htmlFor="password"
                 className="input input-bordered flex items-center gap-2 text-sm col-span-2"
               >
                 Password:
+<<<<<<< HEAD
+=======
+                {/* d1a7290f2eaeabe4dc895bcb885fc3ffb813c0f4 */}
+>>>>>>> b492056a372d13340a046284487ea5e3f76fb879
                 <input
                   className="grow overflow-hidden pass"
                   id="password"
