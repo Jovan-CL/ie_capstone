@@ -3,6 +3,22 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { PIIELOGOCROPPED, IECONNECNEWPNG, PUPLOGOPNG } from "../assets/index";
 
+// let checker = function () {
+//   let password = document.querySelector("#password").value;
+//   let confirmPassword = document.querySelector("#confPassword").value;
+
+//   if (password === "" && confirmPassword === "") {
+//     document.querySelector("#message").innerHTML = "Empty Field";
+//     document.querySelector("#message").style.color = "Orange";
+//   } else if (password === confirmPassword) {
+//     document.querySelector("#message").innerHTML = "Matched";
+//     document.querySelector("#message").style.color = "Green";
+//   } else {
+//     document.querySelector("#message").innerHTML = "Not Matched";
+//     document.querySelector("#message").style.color = "Red";
+//   }
+// };
+
 const Registration = () => {
   const navigate = useNavigate();
 
@@ -52,7 +68,7 @@ const Registration = () => {
   }
   return (
     <>
-      <header className=" | login-header">
+      <header className=" | login-header ">
         <ul className=" | login-header-icons flex items-center w-full justify-between">
           <img src={PIIELOGOCROPPED} alt="" />
 
@@ -63,6 +79,7 @@ const Registration = () => {
           <a href="https://www.pup.edu.ph/">
             <img src={PUPLOGOPNG} alt="" />
           </a>
+
         </ul>
       </header>
       <main>
@@ -157,7 +174,7 @@ const Registration = () => {
               >
                 Birthday:
                 <input
-                  className="grow- overflow-hidden"
+                  className="grow overflow-hidden"
                   id="birthday"
                   name="birthday"
                   type="date"
@@ -193,7 +210,7 @@ const Registration = () => {
                 htmlFor="location"
                 className="input input-bordered flex items-center gap-2 text-sm col-span-3"
               >
-                Address
+                Address:
                 <input
                   className="grow overflow-hidden"
                   id="location"
@@ -290,7 +307,7 @@ const Registration = () => {
 
               <label
                 htmlFor="batch"
-                className="input input-bordered flex items-center gap-2 text-sm col-span-3"
+                className="input input-bordered flex items-center gap-2 text-sm col-span-3 justify-center"
               >
                 Batch:
                 <select
