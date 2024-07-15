@@ -50,15 +50,15 @@ const Header = () => {
           </NavLink>
           <LogoutButton />
         </nav>
-        <div className="hamburger-container">
-          <button className="hamburger-button">
+        {/* <div className="hamburger-container">
+          <button className="hamburger-button"> 
             <svg width="25" viewBox="0 0 100 100">
               <rect width="80" height="10" x="10" y="30" rx="5"></rect>
               <rect width="80" height="10" x="10" y="50" rx="5"></rect>
               <rect width="80" height="10" x="10" y="70" rx="5"></rect>
             </svg>
           </button>
-        </div>
+        </div> */}
       </div>
     </header>
   );
