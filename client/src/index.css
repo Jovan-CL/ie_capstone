@@ -508,6 +508,10 @@ main {
   justify-content: center;
   align-items: center; */
   /* padding-top: 17rem; */
+  background-image: url("./assets/piie_background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: contain;
 
   & > section > div > h1 {
     font-size: 4rem;

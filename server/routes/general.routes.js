@@ -85,7 +85,6 @@ router.route("/registration").post(async (req, res) => {
     console.log(password);
     const saltRounds = 10;
     const hashedPass = await bcrypt.hash(password, saltRounds);
-    const hashedlocation = await bcrypt.hash(location, saltRounds);
 
     const newProfile = await Users.create({
       firstname,
@@ -95,7 +94,7 @@ router.route("/registration").post(async (req, res) => {
       age,
       birthday,
       contact,
-      location: hashedlocation,
+      location,
       email,
       username,
       password: hashedPass,
@@ -290,4 +289,10 @@ router.route("/people").get(authenticate, async (req, res) => {
   }
 });
 
+router.route("/jobs").get(async (req, res) => {
+  try {
+  } catch (error) {
+    res.status;
+  }
+});
 export default router;

@@ -63,13 +63,13 @@ const Login = () => {
       </header>
       <main className="login-main">
         <section>
-          <div>
+          {/* <div>
             <img
               className="w-full brightness-100 index-bg absolute"
               src={BACKGROUND}
               alt=""
             />
-          </div>
+          </div> */}
 
           <div className="pt-15">
             <h1 className="font-bold text-lime-950">
