@@ -24,6 +24,10 @@ import RHEA from "./rhea-bulletin.jpg";
 import SHAINA from "./shaina-bulletin.jpg";
 import VIVIENE from "./viviene-bulletin.jpg";
 import EXECBG from "./piie-flag-background.jpg";
+import BIRTHDAY from "./birthday-icon.png";
+import LOCATION from "./location-icon.png";
+import PHONE from "./telephone-icon.png";
+import EMAIL from "./email-icon.png";
 
 export {
   PIIELOGOCROPPED,
@@ -51,6 +55,10 @@ export {
   RHEA,
   SHAINA,
   VIVIENE,
-  EXECBG
+  EXECBG,
+  BIRTHDAY,
+  LOCATION,
+  PHONE,
+  EMAIL
 
 };
