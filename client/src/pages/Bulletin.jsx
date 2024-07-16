@@ -95,9 +95,9 @@ const Bulletin = () => {
             </p>
           </div>
           <div className="socials-container">
-            <span className="italic tracking-wider">Facebook<a href="https://www.facebook.com/PIIEPUPBSC"><img src={FACEBOOK} alt="" /></a></span>
-            <span className="italic tracking-wider">piie.pupbschapter@gmail.com<img src={GMAIL} alt="" /></span>
-            <span className="italic tracking-wider"><a href="https://www.instagram.com/piiepupbsc?igsh=ZXR0dHlqYjhwMmJr">Instagram<img src={INSTAGRAM} alt="" /></a></span>
+            <span className="italic tracking-wider"><a href="https://www.facebook.com/PIIEPUPBSC"><img className="rounded-full hover:shadow-black hover:rounded-full transition ease-in-out delay-100 hover:shadow-lg" src={FACEBOOK} alt="" />Facebook</a></span>
+            <span className="italic tracking-wider"><img className="" src={GMAIL} alt=""/>piie.pupbschapter@gmail.com</span>
+            <span className="italic tracking-wider"><a href="https://www.instagram.com/piiepupbsc?igsh=ZXR0dHlqYjhwMmJr"><img className="rounded-full hover:shadow-black hover:rounded-full transition ease-in-out delay-100 hover:shadow-lg p-1" src={INSTAGRAM} alt="" />Instagram</a></span>
           </div>
           <div className="mission-vision-container">
             <div>
