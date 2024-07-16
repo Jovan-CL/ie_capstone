@@ -31,6 +31,7 @@ import EMAIL from "./email-icon.png";
 import FACEBOOK from "./facebook-icon.png";
 import INSTAGRAM from "./instagram-icon.png";
 import GMAIL from "./gmail-icon.png";
+import GOOGLE from "./google-icon.png";
 
 export {
   PIIELOGOCROPPED,
@@ -65,6 +66,7 @@ export {
   EMAIL,
   FACEBOOK,
   INSTAGRAM,
-  GMAIL
+  GMAIL,
+  GOOGLE
 
 };

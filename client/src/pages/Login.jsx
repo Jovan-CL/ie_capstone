@@ -7,7 +7,7 @@ import {
   PIIELOGOCROPPED,
   IECONNECNEWPNG,
   PUPLOGOPNG,
-  BACKGROUND,
+  GOOGLE, 
 } from "../assets/index";
 
 const Login = () => {
@@ -106,9 +106,13 @@ const Login = () => {
                 <p className="text-sm text-center">
                   Don&#39;t have an account?
                 </p>
-                <NavLink to="/registration">
-                  <p className="text-center text-sm">Sign up</p>
-                </NavLink>
+                <div>
+                  <button className="w-full flex items-center text-sm btn mt-3"><img className="w-6" src={GOOGLE} alt="" />Sign up with google</button>
+                  <NavLink to="/registration">
+                    <button className="text-center text-sm btn btn-outline mt-3 w-full">Sign up manually</button>
+                  </NavLink>
+                </div>
+                
               </div>
             </form>
           </div>
