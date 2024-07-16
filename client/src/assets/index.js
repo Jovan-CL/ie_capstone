@@ -28,6 +28,9 @@ import BIRTHDAY from "./birthday-icon.png";
 import LOCATION from "./location-icon.png";
 import PHONE from "./telephone-icon.png";
 import EMAIL from "./email-icon.png";
+import FACEBOOK from "./facebook-icon.png";
+import INSTAGRAM from "./instagram-icon.png";
+import GMAIL from "./gmail-icon.png";
 
 export {
   PIIELOGOCROPPED,
@@ -59,6 +62,9 @@ export {
   BIRTHDAY,
   LOCATION,
   PHONE,
-  EMAIL
+  EMAIL,
+  FACEBOOK,
+  INSTAGRAM,
+  GMAIL
 
 };

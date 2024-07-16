@@ -91,6 +91,7 @@ main {
     padding: 0.5rem;
     margin: 0 1.5rem 0 1.5rem;
     
+    
 
     &.active p {
       color: #8febba;
@@ -140,6 +141,9 @@ main {
   & div:nth-child(1) h2 {
     text-transform: uppercase;
     text-align: center;
+    font-size: 2.4rem;
+    font-weight: bold;
+    padding: 2rem
   }
 
   .ie-logo-container {
@@ -164,11 +168,25 @@ main {
 .socials-container {
   display: flex;
   justify-content: space-around;
-  margin-top: 1rem;
+  margin-top: 2rem;
 
   & span {
     margin-inline: 2rem;
+    font-weight: bold;
+    
+    & > a > img{
+      margin-left: .4rem;
+      width: 4rem;
+    }
+
+    & > img {
+      margin-left: 5.3rem;
+      width: 4rem;
+    }
+
   }
+
+  
 }
 
 .mission-vision-container {
@@ -186,6 +204,7 @@ main {
 
   & p {
     line-height: 2.5rem;
+    /* text-align: justify; */
   }
 }
 
@@ -274,7 +293,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-inline: 1rem;
+  padding-right: 1.5rem;
 }
 
 .hamburger-button {
@@ -315,7 +334,7 @@ main {
   transform: scale(1.1);
 }
 @media (width <= 1280px) {
-  .bulletin-nav,
+  /* .bulletin-nav, */
   .form-people {
     display: none;
   }
@@ -517,15 +536,23 @@ main {
   justify-content: center;
   align-items: center; */
   /* padding-top: 17rem; */
-  background-image: url("./assets/piie_background.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  object-fit: contain;
+  
+  
 
   & > section > div > h1 {
     font-size: 4rem;
     text-align: center;
   }
+}
+
+.bg-login {
+  background-image: url("./assets/piie_background.png");
+  background-repeat:repeat;
+  background-position: center;
+  object-fit: cover;
+  width: 100svw;
+  position: absolute;
+  
 }
 
 .index-bg {
@@ -610,4 +637,23 @@ main {
     display: flex;
     justify-content: left;
   }
+}
+
+@media (max-width: 1224px) {
+  .bulletin-header {
+
+    & > ul {
+      display: none;
+      
+    }
+
+    & > div > nav {
+      flex: 1;
+      justify-content: left;
+      flex-shrink: 1;
+    }
+  }
+
+  
+  
 }

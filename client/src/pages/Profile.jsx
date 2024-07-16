@@ -44,7 +44,7 @@ const Profile = () => {
                       </div>
                       <div className="profile-information ">
                         {/* <h1 className="py-2 ">HELLO EVERYBODY, I AM</h1> */}
-                        <h3 className="py-2 text-5xl uppercase ">{user.name}</h3>
+                        <h3 className="py-2 text-5xl uppercase">{user.name}</h3>
                         <p className="py-2 uppercase text-xl">{user.age} years old</p>
                         <p className="py-2 flex items-center"><img className="w-5 mr-4" src={BIRTHDAY} alt="" /> {extractDate(user.birthday)}</p>
                         {/* <p>Created at: {user}</p> */}

@@ -20,7 +20,10 @@ import {
   RHEA,
   SHAINA,
   VIVIENE,
-  EXECBG
+  EXECBG,
+  FACEBOOK,
+  INSTAGRAM,
+  GMAIL
    } from "../assets";
 
 const Bulletin = () => {
@@ -55,7 +58,7 @@ const Bulletin = () => {
       <section className="bulletin-page-main">
         <section className="bulletin-page">
           <div>
-            <h1>Announcement!</h1>
+            <h1 className="font-bold">Announcement!</h1>
           </div>
           <div>
             <ul>
@@ -79,7 +82,7 @@ const Bulletin = () => {
         </section>
         <section className="about-org-section">
           <div>
-            <h2>About the organization</h2>
+            <h2 className="text-xl">About the organization</h2>
           </div>
           <div className="ie-logo-container">
             <img src={IELOGOBIG} alt="" />
@@ -92,14 +95,14 @@ const Bulletin = () => {
             </p>
           </div>
           <div className="socials-container">
-            <span>Facebook</span>
-            <span>Instagram</span>
-            <span>G-mail</span>
+            <span className="italic tracking-wider">Facebook<a href="https://www.facebook.com/PIIEPUPBSC"><img src={FACEBOOK} alt="" /></a></span>
+            <span className="italic tracking-wider">piie.pupbschapter@gmail.com<img src={GMAIL} alt="" /></span>
+            <span className="italic tracking-wider"><a href="https://www.instagram.com/piiepupbsc?igsh=ZXR0dHlqYjhwMmJr">Instagram<img src={INSTAGRAM} alt="" /></a></span>
           </div>
           <div className="mission-vision-container">
             <div>
               <h3 className="font-bold">Mission</h3>
-              <p>
+              <p className="text-justify">
                 The Philippine Institute of Industrial Engineers – Polytechnic
                 University of the Philippines Biñan Student Chapter, as a
                 university recognized organization, aims to promote the rights
@@ -111,7 +114,7 @@ const Bulletin = () => {
             </div>
             <div>
               <h3 className="font-bold">Vision</h3>
-              <p>
+              <p className="text-justify">
                 The Philippine Institute of Industrial Engineers – Polytechnic
                 University of the Philippines Biñan Student Chapter, guided by
                 University values, envisions the formation and development of an

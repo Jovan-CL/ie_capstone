@@ -61,19 +61,20 @@ const Login = () => {
           </a>
         </ul>
       </header>
-      <main className="login-main">
-        <section>
-          {/* <div>
+      <main className="login-main w-full">
+        <section className="bg-login">
+          
+          {/* div>
             <img
               className="w-full brightness-100 index-bg absolute"
               src={BACKGROUND}
               alt=""
             />
-          </div> */}
+          </div>< */}
 
           <div className="pt-15">
             <h1 className="font-bold text-lime-950">
-              <span className="text-green-900">Connect, Network,</span> and
+              <span className="text-green-900 text">Connect, Network,</span> and
               Inspire
             </h1>
           </div>
