@@ -1,11 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Header from "../components/Header";
-import { PIIELOGOCROPPED } from "../assets";
 import extractDate from "../utils/extractDate";
 import { AuthContext } from "../context/AuthContext";
 import useConversation from "../zustand/zustand.store";
 import useGetConversations from "../hooks/useGetConversations";
+import {
+   PIIELOGOCROPPED,
+   BIRTHDAY,
+   LOCATION,
+   PHONE,
+   EMAIL
+  } from "../assets";
+
 // const loadings = true;
 const Profile = () => {
   const { loading, conversations } = useGetConversations();
@@ -35,15 +42,15 @@ const Profile = () => {
                           alt={user.name}
                         />
                       </div>
-                      <div className="profile-information">
-                        <h1 className="py-2 ">HELLO EVERYBODY, I AM</h1>
-                        <h3 className="py-2 text-5xl uppercase ">{user.name}</h3>
-                        <p className="py-2">Age: {user.age}</p>
-                        <p className="py-2">Birthday: {extractDate(user.birthday)}</p>
+                      <div className="profile-information ">
+                        {/* <h1 className="py-2 ">HELLO EVERYBODY, I AM</h1> */}
+                        <h3 className="py-2 text-5xl uppercase">{user.name}</h3>
+                        <p className="py-2 uppercase text-xl">{user.age} years old</p>
+                        <p className="py-2 flex items-center"><img className="w-5 mr-4" src={BIRTHDAY} alt="" /> {extractDate(user.birthday)}</p>
                         {/* <p>Created at: {user}</p> */}
-                        <p className="py-2">Location: {user.location}</p>
-                        <p className="py-2">Contact Number: {user.contact}</p>
-                        <p className="py-2">Email: {user.email}</p>
+                        <p className="py-2 flex items-center"><img className="w-5 mr-4" src={LOCATION} alt="" /> {user.location}</p>
+                        <p className="py-2 flex items-center"><img className="w-5 mr-4" src={PHONE} alt="" /> {user.contact}</p>
+                        <p className="py-2 flex items-center"><img className="w-5 mr-4" src={EMAIL} alt="" /> {user.email}</p>
                         <p className="py-2 text-xl hover:underline underline-offset-2 ">
                           More info
                         </p>
