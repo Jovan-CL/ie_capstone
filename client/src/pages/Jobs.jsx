@@ -55,7 +55,7 @@ const Jobs = () => {
           </div>
           <h2 className="text-center font-bold outline-double outline-[#264233]">New Jobs</h2>
           <div className="job-posts-container">
-            <div className="posts-container flex flex-wrap justify-between">
+            <div className="posts-container flex flex-wrap justify-evenly">
               {/* Start of post-card */}
               {jobs.map((job) => {
                 return (
