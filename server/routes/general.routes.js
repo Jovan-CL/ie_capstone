@@ -29,7 +29,11 @@ router.route("/bulletin").get(authenticate, async (req, res) => {
   try {
     const resAnnouncement = await Announcement?.find({
       expiration: { $gte: Date.now() },
-    });
+    }).populate("name", "name photopic");
+
+    await Announcement?.findOneAndDelete({
+      expiration: { $lte: Date.now() },
+    }).exec();
     console.log(resAnnouncement);
     res.status(200).json({ success: true, announcement: resAnnouncement });
   } catch (error) {
@@ -39,13 +43,14 @@ router.route("/bulletin").get(authenticate, async (req, res) => {
 
 // ANNOUNCEMENT POST ENDPOINT
 router.route("/bulletin").post(authenticate, async (req, res) => {
-  const { name, announcement, expiration } = req.body;
+  const { announcement, expiration } = req.body;
+  const userId = req.user._id;
 
   const date = new Date(expiration);
 
   try {
     const newAnnouncement = await Announcement.create({
-      name: name,
+      name: userId,
       announcement: announcement,
       expiration: date,
     });
@@ -56,7 +61,7 @@ router.route("/bulletin").post(authenticate, async (req, res) => {
       .status(201)
       .json({ success: true, message: "Announcement created successfully!" });
   } catch (error) {
-    res.json({ success: false, error: err.message });
+    res.json({ success: false, error: error.message });
   }
 });
 

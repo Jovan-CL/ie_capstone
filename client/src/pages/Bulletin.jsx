@@ -56,6 +56,10 @@ const Bulletin = () => {
     <>
       <Header />
       <section className="bulletin-page-main">
+        <div>
+          <span>Announccements</span>
+          <span>About IE</span>
+        </div>
         <section className="bulletin-page">
           <div>
             <h1 className="font-bold">Announcement!</h1>

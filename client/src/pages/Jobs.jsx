@@ -10,7 +10,6 @@ function formatDate(date) {
 }
 
 const formatter = new Intl.RelativeTimeFormat("en", { style: "short" });
-
 const Jobs = () => {
   const { announcements } = useConversation();
   const { jobs } = useGetJobs();
