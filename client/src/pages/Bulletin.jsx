@@ -61,13 +61,13 @@ const Bulletin = () => {
             <h1 className="font-bold">Announcement!</h1>
           </div>
           <div>
-            <ul>
+            <ul className="">
               {announcements ? (
                 announcements.map((item) => {
-                  return <li key={item._id}>{item.announcement}</li>;
+                  return <li className="border-b-8 border-double shadow-lg rounded-md bg-slate-200 py-3" key={item._id}>{item.announcement}</li>;
                 })
               ) : (
-                <li>No Announcement</li>
+                <li >No Announcement</li>
               )}
             </ul>
           </div>

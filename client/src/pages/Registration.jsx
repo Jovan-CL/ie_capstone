@@ -332,7 +332,7 @@ const Registration = () => {
                 </select>
               </label>
               <button
-                className="btn bg-lime-900 font-bold text-white hover:bg-white hover:text-lime-900 shadow-lg w-56 col-start-6 col-end-4 row-start-5"
+                className="btn bg-lime-900 font-bold text-white hover:bg-white hover:text-lime-900 shadow-lg  col-start-3 col-end-6 row-start-5"
                 type="submit"
               >
                 Submit
