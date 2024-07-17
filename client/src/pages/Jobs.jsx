@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import useConversation from "../zustand/zustand.store";
 import useGetJobs from "../hooks/useGetJobs";
 import extractDate from "../utils/extractDate";
+
+import JobsModal from "../components/jobs/JobsModal";
 function formatDate(date) {
   return new Date(date).getDay();
 }
@@ -19,11 +21,9 @@ const Jobs = () => {
       <section className="jobs-page-grid">
         <div className="left-sidebar">
           <div className="jobs-buttons">
-            <button className="preferences-button">Preferences</button>
-            <button className="save-job-button">Save Job</button>
-            <button type="button" className="create-post-button">
-              Create a post
-            </button>
+            {/* <button className="preferences-button">Preferences</button>
+            <button className="save-job-button">Save Job</button> */}
+            <JobsModal />
           </div>
         </div>
         <div className="middle-content">

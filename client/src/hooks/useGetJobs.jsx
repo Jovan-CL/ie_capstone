@@ -14,7 +14,7 @@ const useGetJobs = () => {
         if (response.ok) {
           const data = await response.json();
           //   console.log(response);
-          console.log(data);
+          // console.log(data);
           setJobs(data);
         } else {
           console.error("Failed to fetch announcements:", response.status);
