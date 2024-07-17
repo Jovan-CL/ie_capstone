@@ -125,16 +125,19 @@ const EditProfile = () => {
               onSubmit={handleSubmit}
               encType="multipart/form-data"
             >
+              
               <label className="input input-bordered flex items-center gap-2 text-sm col-start-3 col-end-6 mb-7" htmlFor="photo">
-                Upload a profile pic:
                 <input
                   type="file"
+                  className="file-input w-full max-w-xs"
                   name="photo"
                   id="photo"
                   accept=".png, .jpg, .jpeg"
                   onChange={(e) => setPhoto(e.target.files[0])} // Handle file input
                 />
+                <p className="text-sm text-center">Upload a profile pic</p>
               </label>
+              
               <label className="input input-bordered flex items-center gap-2 text-sm col-start-1 col-end-3 row-start-2" htmlFor="firstname">
                 Firstname:
                 <input

@@ -65,13 +65,13 @@ const Bulletin = () => {
             <h1 className="font-bold">Announcement!</h1>
           </div>
           <div>
-            <ul>
+            <ul className="">
               {announcements ? (
                 announcements.map((item) => {
-                  return <li key={item._id}>{item.announcement}</li>;
+                  return <li className="border-b-8 border-double shadow-lg rounded-md bg-slate-200 py-3" key={item._id}>{item.announcement}</li>;
                 })
               ) : (
-                <li>No Announcement</li>
+                <li >No Announcement</li>
               )}
             </ul>
           </div>
@@ -149,89 +149,6 @@ const Bulletin = () => {
           </div>
           <div>
             <div className="shadow-lg shadow-black ">
-              <img
-                className="exec-bg index-bg absolute flex shrink"
-                src={EXECBG}
-                alt=""
-              />
-              <div className="exec-bg grid grid-cols-7 grid-rows-4 w-full gap-4 p-4 overflow-hidden">
-                <img className="col-start-4 col-end-5" src={AIRA} alt="" />
-                <img
-                  className="col-start-3 col-end-4 row-start-2"
-                  src={ZETH}
-                  alt=""
-                />
-                <img
-                  className="col-start-5 col-end-6 row-start-2"
-                  src={LEX}
-                  alt=""
-                />
-                <img
-                  className="col-start-7 col-end-8 row-start-3"
-                  src={AXEL}
-                  alt=""
-                />
-                <img
-                  className="col-start-6 col-end-7 row-start-3"
-                  src={DANIELA}
-                  alt=""
-                />
-                <img
-                  className="col-start-5 col-end-6 row-start-3"
-                  src={EUNICE}
-                  alt=""
-                />
-                <img
-                  className="col-start-4 col-end-5 row-start-3"
-                  src={MARK}
-                  alt=""
-                />
-                <img
-                  className="col-start-3 col-end-4 row-start-3"
-                  src={MICOLE}
-                  alt=""
-                />
-                <img
-                  className="col-start-2 col-end-3 row-start-3"
-                  src={MIKAELA}
-                  alt=""
-                />
-                <img
-                  className="col-start-1 col-end-2 row-start-3"
-                  src={MIKAY}
-                  alt=""
-                />
-                <img
-                  className="col-start-7 col-end-8 row-start-4"
-                  src={SHAINA}
-                  alt=""
-                />
-                <img
-                  className="col-start-6 col-end-7 row-start-4"
-                  src={JANELLA}
-                  alt=""
-                />
-                <img
-                  className="col-start-5 col-end-6 row-start-4"
-                  src={RHEA}
-                  alt=""
-                />
-                <img
-                  className="col-start-3 col-end-4 row-start-4"
-                  src={HENRY}
-                  alt=""
-                />
-                <img
-                  className="col-start-2 col-end-3 row-start-4"
-                  src={PAUL}
-                  alt=""
-                />
-                <img
-                  className="col-start-1 col-end-2 row-start-4"
-                  src={VIVIENE}
-                  alt=""
-                />
-              </div>
               <div className="shadow-lg shadow-black p-4">
                 <div className="grid grid-cols-7 grid-rows-4 gap-4 overflow-hidden">
                   <img

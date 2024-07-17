@@ -46,15 +46,16 @@ const JobsModal = () => {
       </button>
       <dialog id="my_modal_4" className="modal">
         <div className="modal-box w-11/12 max-w-5xl p-12">
-          <h3 className="font-bold text-3xl">Post a Job</h3>
-          <p className="py-4 text-sm">Press ESC to cancel</p>
-          <div className="flex ">
+          <h3 className="font-bold text-3xl uppercase text-center border-y-8 border-double">Post a Job</h3>
+          <p className="py-4 text-sm">Press <span className="font-bold text-red-500">ESC</span> to cancel</p>
+          <div className="flex font-bold uppercase">
             <form className="flex flex-col flex-1" onSubmit={handleSubmit}>
               <label htmlFor="job-header">
-                Header:
+                Job Title:
                 <div>
                   <input
-                    className="border border-black w-full py-1 px-2 rounded-md"
+                    className="py-1 px-2 rounded-md input input-bordered w-full font-normal placeholder:italic placeholder:font-bold"
+                    placeholder="What's the Job Title?"
                     value={jobForm.jobheader}
                     onChange={(e) =>
                       setJobForm({ ...jobForm, jobheader: e.target.value })
@@ -64,11 +65,12 @@ const JobsModal = () => {
                   />
                 </div>
               </label>
-              <label className="" htmlFor="job-definition">
-                Description:
+              <label className="mt-2" htmlFor="job-definition">
+                Job Description:
                 <textarea
-                  className=" resize-none border border-black w-full text-wrap py-1 px-2 rounded-md
+                  className="resize-none text-wrap py-1 px-2 rounded-md textarea textarea-bordered w-full font-normal placeholder:italic placeholder:font-bold
                   h-[0]"
+                  placeholder="Description here..."
                   name=""
                   id=""
                   // cols="30"

@@ -52,27 +52,28 @@ const Jobs = () => {
               </label>
             </form>
           </div>
+          <h2 className="text-center font-bold outline-double outline-[#264233]">New Jobs</h2>
           <div className="job-posts-container">
-            <h2>New Jobs</h2>
-            <div className="posts-container">
+            <div className="posts-container flex flex-wrap justify-evenly">
               {/* Start of post-card */}
               {jobs.map((job) => {
                 return (
-                  <div key={job._id} className="post-card">
+                  <div key={job._id} className="post-card w-64 rounded-lg hover:scale-110 transition ease-in-out delay-100">
                     <div className="flex items-center">
                       <img
-                        className="w-14 h-14 rounded-full"
+                        className="w-14 h-14 rounded-full border-2 mr-2"
                         src={job.jobPostName.photopic}
                         alt="Source name"
                       />
                       <h3 className="post-name">{job.jobPostName.name}</h3>
                     </div>
-                    <div className="post-content">
-                      <span className="post-time">
+                    <div className="post-content grid grid-rows-3 break-keep">
+                      <p className="italic text-lg tracking-wider font-bold">{job.jobHeader}</p>
+                      <p className="post-message overflow-auto h-16">{job.jobDefinition}</p>
+                      <p className="text-xs self-end">Remote / Onsite</p>
+                      <span className="post-time text-xs row-start-4 font-bold items place-items-end"><p className="font-normal">Posted</p>
                         {extractDate(job.createdAt)}
-                      </span>
-                      <p className="">{job.jobHeader}</p>
-                      <p className="post-message">{job.jobDefinition}</p>
+                      </span>            
                     </div>
                   </div>
                 );
@@ -83,9 +84,9 @@ const Jobs = () => {
           </div>
           <div></div>
         </div>
-        <div className="right-sidebar">
-          <div className="jobs-side-announcement">
-            <h2>Announcement</h2>
+        <div className="right-sidebar bg-[#264233] mt-3 rounded-lg">
+          <div className="jobs-side-announcement text-white">
+            <h2 className="font-bold uppercase text-center">Announcement</h2>
             {announcements ? (
               announcements.map((item) => {
                 console.log(item.date_posted);
@@ -93,14 +94,14 @@ const Jobs = () => {
                 return (
                   <div className="announcement-card" key={item._id}>
                     <img src="../assets/piie-logo-cropped.png" alt="" />
-                    <div className="announcement-content">
-                      <h3 className="announcement-name">{item.name}</h3>
-                      <span className="announcement-time">
-                        {formatter.format(-formatDate(item.date_posted), "day")}
-                      </span>
-                      <p className="announcement-message">
+                    <div className="announcement-content border-y-4 my-3 border-double">
+                      <h3 className="announcement-name my-3">{item.name}</h3>
+                      <p className="announcement-message font-bold text-xl uppercase tracking-widest">
                         {item.announcement}
                       </p>
+                      <span className="announcement-time text-xs">
+                        {formatter.format(-formatDate(item.date_posted), "day")}
+                      </span>
                     </div>
                   </div>
                 );
