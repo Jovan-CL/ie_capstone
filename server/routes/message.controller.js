@@ -29,7 +29,7 @@ export async function sendMessage(req, res) {
       conversation.messages.push(newMessage._id);
     }
 
-    await Promise.all([conversation.save(), newMessage.save()]);
+    await Promise.allSettled([conversation.save(), newMessage.save()]);
 
     const receiverSocketId = getReceiverSocketId(receiverId);
     if (receiverSocketId) {

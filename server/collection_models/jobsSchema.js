@@ -1,11 +1,20 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const Jobs = new mongoose.Schema(
+const jobsSchema = new mongoose.Schema(
   {
-    id: { type: Schema.Types.ObjectId, required: true },
+    jobPostName: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users",
+      required: true,
+    },
+    jobHeader: { type: String, required: true },
     jobDefinition: { type: String, required: true },
   },
   {
     timestamps: true,
   }
 );
+
+const Jobs = mongoose.model("jobs", jobsSchema);
+
+export default Jobs;

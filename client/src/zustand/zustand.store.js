@@ -9,6 +9,10 @@ const useConversation = create((set) => ({
   currentProfileToEdit: null,
   setCurrentProfileToEdit: (currentProfileToEdit) =>
     set({ currentProfileToEdit }),
+  announcements: [],
+  setAnnouncements: (announcements) => set({ announcements }),
+  jobs: [],
+  setJobs: (jobs) => set({ jobs }),
 }));
 
 export default useConversation;

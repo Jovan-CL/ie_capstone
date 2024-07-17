@@ -1,5 +1,8 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Header from "../components/Header";
+import useConversation from "../zustand/zustand.store";
+import useGetJobs from "../hooks/useGetJobs";
+import extractDate from "../utils/extractDate";
 function formatDate(date) {
   return new Date(date).getDay();
 }
@@ -7,29 +10,9 @@ function formatDate(date) {
 const formatter = new Intl.RelativeTimeFormat("en", { style: "short" });
 
 const Jobs = () => {
-  const [announcements, setAnnouncements] = useState([]);
-  useEffect(() => {
-    const fetchAnnouncements = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:8000/ie-connect/api/bulletin",
-          {
-            credentials: "include", // Include credentials (cookies)
-          }
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setAnnouncements(data.announcement);
-        } else {
-          console.error("Failed to fetch announcements:", response.status);
-        }
-      } catch (error) {
-        console.error("Error fetching announcements:", error);
-      }
-    };
-
-    fetchAnnouncements();
-  }, []);
+  const { announcements } = useConversation();
+  const { jobs } = useGetJobs();
+  // console.log(jobs);
   return (
     <>
       <Header />
@@ -73,39 +56,30 @@ const Jobs = () => {
           <div className="job-posts-container">
             <h2>New Jobs</h2>
             <div className="posts-container">
-              <div className="post-card">
-                <img src="../assets/piie-logo-cropped.png" alt="" />
-                <div className="post-content">
-                  <h3 className="post-name">Jonhn Dock</h3>
-                  <span className="post-time">1 minute ago</span>
-                  <p className="post-message">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Ipsam optio dolorum cupiditate nisi non inventore!
-                  </p>
-                </div>
-              </div>
-              <div className="post-card">
-                <img src="../assets/piie-logo-cropped.png" alt="" />
-                <div className="post-content">
-                  <h3 className="post-name">Jonhn Dock</h3>
-                  <span className="post-time">1 minute ago</span>
-                  <p className="post-message">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Ipsam optio dolorum cupiditate nisi non inventore!
-                  </p>
-                </div>
-              </div>
-              <div className="post-card">
-                <img src="../assets/piie-logo-cropped.png" alt="" />
-                <div className="post-content">
-                  <h3 className="post-name">Jonhn Dock</h3>
-                  <span className="post-time">1 minute ago</span>
-                  <p className="post-message">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Ipsam optio dolorum cupiditate nisi non inventore!
-                  </p>
-                </div>
-              </div>
+              {/* Start of post-card */}
+              {jobs.map((job) => {
+                return (
+                  <div key={job._id} className="post-card">
+                    <div className="flex items-center">
+                      <img
+                        className="w-14 h-14 rounded-full"
+                        src={job.jobPostName.photopic}
+                        alt="Source name"
+                      />
+                      <h3 className="post-name">{job.jobPostName.name}</h3>
+                    </div>
+                    <div className="post-content">
+                      <span className="post-time">
+                        {extractDate(job.createdAt)}
+                      </span>
+                      <p className="">{job.jobHeader}</p>
+                      <p className="post-message">{job.jobDefinition}</p>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* End of post-card */}
             </div>
           </div>
           <div></div>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import IELOGOBIG from "../assets/logo-big.png";
 
 import Header from "../components/Header";
-import { 
+import {
   AIRA,
   LEX,
   ZETH,
@@ -20,11 +20,12 @@ import {
   RHEA,
   SHAINA,
   VIVIENE,
-  EXECBG
-   } from "../assets";
+  EXECBG,
+} from "../assets";
+import useConversation from "../zustand/zustand.store";
 
 const Bulletin = () => {
-  const [announcements, setAnnouncements] = useState([]);
+  const { announcements, setAnnouncements } = useConversation();
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
@@ -128,29 +129,91 @@ const Bulletin = () => {
             </div>
             <div>
               <div className="shadow-lg shadow-black ">
-                <img className="exec-bg index-bg absolute flex shrink" src={EXECBG} alt="" />
+                <img
+                  className="exec-bg index-bg absolute flex shrink"
+                  src={EXECBG}
+                  alt=""
+                />
                 <div className="exec-bg grid grid-cols-7 grid-rows-4 w-full gap-4 p-4 overflow-hidden">
-                    <img className="col-start-4 col-end-5" src={AIRA} alt="" />
-                    <img className="col-start-3 col-end-4 row-start-2" src={ZETH} alt="" />
-                    <img className="col-start-5 col-end-6 row-start-2" src={LEX} alt="" />
-                    <img className="col-start-7 col-end-8 row-start-3" src={AXEL} alt="" />
-                    <img className="col-start-6 col-end-7 row-start-3" src={DANIELA} alt="" />
-                    <img className="col-start-5 col-end-6 row-start-3" src={EUNICE} alt="" />
-                    <img className="col-start-4 col-end-5 row-start-3" src={MARK} alt="" />
-                    <img className="col-start-3 col-end-4 row-start-3" src={MICOLE} alt="" />
-                    <img className="col-start-2 col-end-3 row-start-3" src={MIKAELA} alt="" />
-                    <img className="col-start-1 col-end-2 row-start-3" src={MIKAY} alt="" />
-                    <img className="col-start-7 col-end-8 row-start-4" src={SHAINA} alt="" />
-                    <img className="col-start-6 col-end-7 row-start-4" src={JANELLA} alt="" />
-                    <img className="col-start-5 col-end-6 row-start-4" src={RHEA} alt="" />
-                    <img className="col-start-3 col-end-4 row-start-4" src={HENRY} alt="" />
-                    <img className="col-start-2 col-end-3 row-start-4" src={PAUL} alt="" />
-                    <img className="col-start-1 col-end-2 row-start-4" src={VIVIENE} alt="" />
-
+                  <img className="col-start-4 col-end-5" src={AIRA} alt="" />
+                  <img
+                    className="col-start-3 col-end-4 row-start-2"
+                    src={ZETH}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-5 col-end-6 row-start-2"
+                    src={LEX}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-7 col-end-8 row-start-3"
+                    src={AXEL}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-6 col-end-7 row-start-3"
+                    src={DANIELA}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-5 col-end-6 row-start-3"
+                    src={EUNICE}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-4 col-end-5 row-start-3"
+                    src={MARK}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-3 col-end-4 row-start-3"
+                    src={MICOLE}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-2 col-end-3 row-start-3"
+                    src={MIKAELA}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-1 col-end-2 row-start-3"
+                    src={MIKAY}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-7 col-end-8 row-start-4"
+                    src={SHAINA}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-6 col-end-7 row-start-4"
+                    src={JANELLA}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-5 col-end-6 row-start-4"
+                    src={RHEA}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-3 col-end-4 row-start-4"
+                    src={HENRY}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-2 col-end-3 row-start-4"
+                    src={PAUL}
+                    alt=""
+                  />
+                  <img
+                    className="col-start-1 col-end-2 row-start-4"
+                    src={VIVIENE}
+                    alt=""
+                  />
+                </div>
               </div>
             </div>
-            </div>
-            
           </div>
         </section>
       </section>

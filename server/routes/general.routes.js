@@ -11,6 +11,7 @@ import bcrypt from "bcrypt";
 import { tokenGenerator } from "../utils/tokenGenerator.js";
 
 import { authenticate } from "../middleware/authController.js";
+import Jobs from "../collection_models/jobsSchema.js";
 
 const JSON_SECRET = process.env.JSON_SECRET_KEY;
 
@@ -289,10 +290,57 @@ router.route("/people").get(authenticate, async (req, res) => {
   }
 });
 
-router.route("/jobs").get(async (req, res) => {
+// Jobs route Starts HERE!
+
+router.route("/jobs").get(authenticate, async (req, res) => {
   try {
+    const jobPosts = await Jobs.find({})
+      .populate("jobPostName")
+      .select("-password")
+      .exec();
+
+    if (!jobPosts || jobPosts.length <= 0) {
+      return res.json({ message: "No jobs posted yet" });
+    }
+
+    res.status(200).json(jobPosts);
   } catch (error) {
-    res.status;
+    console.error(error.message);
+    res.status(400).json({ message: "Page not found" });
   }
 });
+
+router.route("/jobPost").post(authenticate, async (req, res) => {
+  try {
+    const { jobheader, jobdefinition } = req.body;
+    const userId = req.user._id;
+
+    if (jobheader === "" || jobdefinition === "") {
+      return res.status(400).json({ message: "Please complete the field!" });
+    }
+
+    const newJobPost = await Jobs.create({
+      jobPostName: userId,
+      jobHeader: jobheader,
+      jobDefinition: jobdefinition,
+    });
+
+    await newJobPost.save();
+    res.status(200).json({ message: "Job posted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "internal server error!" });
+  }
+});
+
+// Jobs route Ends HERE!!
+
+// Admin route Starts HERE!
+
+// router.route("/admin").post((req, res)=> {
+
+// })
+
+// Admin route Ends HERE!!
+
 export default router;
