@@ -644,7 +644,7 @@ main {
 
 @media (max-width: 1224px) {
   .bulletin-header {
-
+    justify-content: center;
     & > ul {
       display: none;
       
@@ -652,7 +652,8 @@ main {
 
     & > div > nav {
       flex: 1;
-      justify-content: left;
+      justify-content: center;
+      align-items: center;
       flex-shrink: 1;
     }
   }

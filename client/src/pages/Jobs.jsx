@@ -9,6 +9,8 @@ function formatDate(date) {
   return new Date(date).getDay();
 }
 
+
+
 const formatter = new Intl.RelativeTimeFormat("en", { style: "short" });
 
 const Jobs = () => {
@@ -92,11 +94,13 @@ const Jobs = () => {
               announcements.map((item) => {
                 console.log(item.date_posted);
                 console.log(-formatDate(item.date_posted));
+                console.log(jobs);
                 return (
                   <div className="announcement-card" key={item._id}>
                     <img src="../assets/piie-logo-cropped.png" alt="" />
                     <div className="announcement-content border-y-4 my-3 border-double">
-                      <h3 className="announcement-name my-3">{item.name}</h3>
+                      <h3 className="announcement-name my-3">{item.name} <img src={job.jobPostName.photopic} alt="" /> </h3>
+                      
                       <p className="announcement-message font-bold text-xl uppercase tracking-widest">
                         {item.announcement}
                       </p>

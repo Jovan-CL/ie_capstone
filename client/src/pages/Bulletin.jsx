@@ -60,11 +60,11 @@ const Bulletin = () => {
           <div>
             <h1 className="font-bold">Announcement!</h1>
           </div>
-          <div>
-            <ul className="">
+          <div className="h-full">
+            <ul className="border-8 border-double rounded-2xl bg-[#D6EFD8] py-3 italic font-['Century_Gothic'] max-h-full h-full">
               {announcements ? (
                 announcements.map((item) => {
-                  return <li className="border-b-8 border-double shadow-lg rounded-md bg-slate-200 py-3" key={item._id}>{item.announcement}</li>;
+                  return <li key={item._id}>{item.announcement}</li>;
                 })
               ) : (
                 <li >No Announcement</li>

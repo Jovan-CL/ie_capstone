@@ -45,15 +45,13 @@ const Profile = () => {
                       <div className="profile-information ">
                         {/* <h1 className="py-2 ">HELLO EVERYBODY, I AM</h1> */}
                         <h3 className="py-2 text-5xl uppercase">{user.name}</h3>
-                        <p className="py-2 uppercase text-xl">{user.age} years old</p>
+                        <p className="py-2 uppercase text-xl flex">{user.age} years old<p className="ml-3">Batch: {user.batch}</p></p>
                         <p className="py-2 flex items-center"><img className="w-5 mr-4" src={BIRTHDAY} alt="" /> {extractDate(user.birthday)}</p>
                         {/* <p>Created at: {user}</p> */}
                         <p className="py-2 flex items-center"><img className="w-5 mr-4" src={LOCATION} alt="" /> {user.location}</p>
                         <p className="py-2 flex items-center"><img className="w-5 mr-4" src={PHONE} alt="" /> {user.contact}</p>
                         <p className="py-2 flex items-center"><img className="w-5 mr-4" src={EMAIL} alt="" /> {user.email}</p>
-                        <p className="py-2 text-xl hover:underline underline-offset-2 ">
-                          More info
-                        </p>
+                        
                         <div className="profile-buttons flex justify-end">
                           <NavLink to="/edit-profile">
                             <button className="edit-profile bg-[#508D4E] ">Edit Profile</button>
