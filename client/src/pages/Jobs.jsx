@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import useConversation from "../zustand/zustand.store";
 import useGetJobs from "../hooks/useGetJobs";
 import extractDate from "../utils/extractDate";
-
+import { useEffect } from "react";
 import JobsModal from "../components/jobs/JobsModal";
 function formatDate(date) {
   return new Date(date).getDay();
@@ -11,9 +11,35 @@ function formatDate(date) {
 
 const formatter = new Intl.RelativeTimeFormat("en", { style: "short" });
 const Jobs = () => {
-  const { announcements } = useConversation();
+  const { announcements, setAnnouncements } = useConversation();
+  console.log(announcements);
+
   const { jobs } = useGetJobs();
-  // console.log(jobs);
+  console.log(jobs);
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/ie-connect/api/bulletin",
+          {
+            credentials: "include", // Include credentials (cookies)
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setAnnouncements(data.announcement);
+        } else {
+          console.error("Failed to fetch announcements:", response.status);
+        }
+      } catch (error) {
+        console.error("Error fetching announcements:", error);
+      }
+    };
+
+    fetchAnnouncements();
+  }, []);
+
   return (
     <>
       <Header />
@@ -52,28 +78,38 @@ const Jobs = () => {
               </label>
             </form>
           </div>
-          <h2 className="text-center font-bold outline-double outline-[#264233]">New Jobs</h2>
+          <h2 className="text-center font-bold outline-double outline-[#264233]">
+            New Jobs
+          </h2>
           <div className="job-posts-container">
             <div className="posts-container flex flex-wrap justify-evenly">
               {/* Start of post-card */}
-              {jobs.map((job) => {
+              {jobs?.map((job) => {
                 return (
-                  <div key={job._id} className="post-card w-64 rounded-lg hover:scale-110 transition ease-in-out delay-100">
+                  <div
+                    key={job?._id}
+                    className="post-card w-64 rounded-lg hover:scale-110 transition ease-in-out delay-100"
+                  >
                     <div className="flex items-center">
                       <img
                         className="w-14 h-14 rounded-full border-2 mr-2"
-                        src={job.jobPostName.photopic}
+                        src={job?.jobPostName?.photopic}
                         alt="Source name"
                       />
-                      <h3 className="post-name">{job.jobPostName.name}</h3>
+                      <h3 className="post-name">{job?.jobPostName?.name}</h3>
                     </div>
                     <div className="post-content grid grid-rows-3 break-keep">
-                      <p className="italic text-lg tracking-wider font-bold">{job.jobHeader}</p>
-                      <p className="post-message overflow-auto h-16">{job.jobDefinition}</p>
+                      <p className="italic text-lg tracking-wider font-bold">
+                        {job?.jobHeader}
+                      </p>
+                      <p className="post-message overflow-auto h-16">
+                        {job?.jobDefinition}
+                      </p>
                       <p className="text-xs self-end">Remote / Onsite</p>
-                      <span className="post-time text-xs row-start-4 font-bold items place-items-end"><p className="font-normal">Posted</p>
-                        {extractDate(job.createdAt)}
-                      </span>            
+                      <span className="post-time text-xs row-start-4 font-bold items place-items-end">
+                        <p className="font-normal">Posted</p>
+                        {extractDate(job?.createdAt)}
+                      </span>
                     </div>
                   </div>
                 );
@@ -89,13 +125,15 @@ const Jobs = () => {
             <h2 className="font-bold uppercase text-center">Announcement</h2>
             {announcements ? (
               announcements.map((item) => {
-                console.log(item.date_posted);
-                console.log(-formatDate(item.date_posted));
+                console.log(item);
+                // console.log(-formatDate(item.date_posted));
                 return (
                   <div className="announcement-card" key={item._id}>
-                    <img src="../assets/piie-logo-cropped.png" alt="" />
+                    <img src={item.name.photopic} alt="" />
                     <div className="announcement-content border-y-4 my-3 border-double">
-                      <h3 className="announcement-name my-3">{item.name}</h3>
+                      <h3 className="announcement-name my-3">
+                        {item.name.name}
+                      </h3>
                       <p className="announcement-message font-bold text-xl uppercase tracking-widest">
                         {item.announcement}
                       </p>

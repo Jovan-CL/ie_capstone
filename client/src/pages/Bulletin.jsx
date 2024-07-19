@@ -56,10 +56,6 @@ const Bulletin = () => {
     <>
       <Header />
       <section className="bulletin-page-main">
-        <div>
-          <span>Announccements</span>
-          <span>About IE</span>
-        </div>
         <section className="bulletin-page">
           <div>
             <h1 className="font-bold">Announcement!</h1>
@@ -68,10 +64,17 @@ const Bulletin = () => {
             <ul className="">
               {announcements ? (
                 announcements.map((item) => {
-                  return <li className="border-b-8 border-double shadow-lg rounded-md bg-slate-200 py-3" key={item._id}>{item.announcement}</li>;
+                  return (
+                    <li
+                      className="border-b-8 border-double shadow-lg rounded-md bg-slate-200 py-3"
+                      key={item._id}
+                    >
+                      {item.announcement}
+                    </li>
+                  );
                 })
               ) : (
-                <li >No Announcement</li>
+                <li>No Announcement</li>
               )}
             </ul>
           </div>

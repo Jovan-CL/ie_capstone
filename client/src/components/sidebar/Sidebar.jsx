@@ -3,7 +3,7 @@ import Conversations from "./Conversations";
 import Header from "../Header";
 import { useState } from "react";
 import { HAMBURGER, IECONNECNEWPNG } from "../../assets";
-
+import ColumnHeader from "../ColumnHeader";
 
 const Sidebar = () => {
   const [toggle, setToggle] = useState(false);
@@ -12,15 +12,50 @@ const Sidebar = () => {
   };
   return (
     <div className="border-r border-slate-500 p-4 flex flex-col | sm:w-full md:w-full lg:w-full">
-      <div
-        onClick={() => toggler()}
-        className="flex justify-left items-center gap-3 text-white pl-2 py-4 bg-[#264233] font-bold rounded-md overflow-hidden text-center"
-      >
-        <span className="cursor-pointer"><img src={HAMBURGER} alt="" />Menu</span>
-        <div className={`${toggle ? "hidden" : ""} mb-4`}>
-          <Header />
+      <div className="flex justify-center items-center gap-3 text-white pl-2 py-4 bg-[#264233] font-bold rounded-md overflow-hidden text-center">
+        <span onClick={() => toggler()} className="cursor-pointer">
+          <div className="hamburger-container ">
+            <button className="hamburger-button">
+              <svg width="25" viewBox="0 0 100 100">
+                <rect
+                  fill="white"
+                  width="80"
+                  height="10"
+                  x="10"
+                  y="30"
+                  rx="5"
+                ></rect>
+                <rect
+                  fill="white"
+                  width="80"
+                  height="10"
+                  x="10"
+                  y="50"
+                  rx="5"
+                ></rect>
+                <rect
+                  fill="white"
+                  width="80"
+                  height="10"
+                  x="10"
+                  y="70"
+                  rx="5"
+                ></rect>
+              </svg>
+            </button>
+          </div>
+          {/* <img src={HAMBURGER} alt="" /> */}
+        </span>
+        <div
+          className={`${
+            toggle ? "hidden" : ""
+          } z-50 mb-4 fixed left-0 top-20 w-2/4`}
+        >
+          <ColumnHeader />
         </div>
-        <SearchInput />
+        <div>
+          <SearchInput />
+        </div>
       </div>
       <div className="divider px-3"></div>
       <Conversations />
